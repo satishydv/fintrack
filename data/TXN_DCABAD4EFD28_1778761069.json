@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_DCABAD4EFD28_1778761069",
+    "order_id": "ORD_168_1778761069",
+    "amount": 2000,
+    "currency": "INR",
+    "customer_name": "Reddy1608",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9121916127",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Reddy1608",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SpF1M3S68EM3HA",
+    "gateway_txn_id": "pay_SpF1RgEqEwFjcb",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "302552159978"
+        },
+        "amount": 200000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+919121916127",
+        "created_at": 1778761075,
+        "currency": "INR",
+        "description": "Wallet Top-up for Reddy1608",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 5074,
+        "id": "pay_SpF1RgEqEwFjcb",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Reddy1608",
+            "txn_id": "TXN_DCABAD4EFD28_1778761069"
+        },
+        "order_id": "order_SpF1M3S68EM3HA",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 774,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "9121916127@ptyes"
+        },
+        "vpa": "9121916127@ptyes",
+        "wallet": null
+    },
+    "created_at": "2026-05-14T12:17:49+00:00",
+    "updated_at": "2026-05-14T12:18:18+00:00",
+    "paid_at": "2026-05-14T12:18:18+00:00",
+    "gateway_order_raw": {
+        "amount": 200000,
+        "amount_due": 200000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778761069,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SpF1M3S68EM3HA",
+        "notes": {
+            "description": "Wallet Top-up for Reddy1608",
+            "txn_id": "TXN_DCABAD4EFD28_1778761069"
+        },
+        "offer_id": null,
+        "receipt": "ORD_168_1778761069",
+        "status": "created"
+    }
+}

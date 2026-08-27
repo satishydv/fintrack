@@ -1,0 +1,31 @@
+Options -Indexes
+ServerSignature Off
+
+# ── Force HTTPS ────────────────────────────────────────────────────────────────
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── Security Headers ───────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── Protect sensitive files ────────────────────────────────────────────────────
+<FilesMatch "(config\.php|\.json|\.log|composer\.(json|lock))$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── Protect data directory ─────────────────────────────────────────────────────
+<FilesMatch "\.json$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── Default to login if not authenticated (handled by PHP sessions) ────────────
+DirectoryIndex index.php login.php

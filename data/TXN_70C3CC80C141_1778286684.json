@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_70C3CC80C141_1778286684",
+    "order_id": "ORD_94_1778286683",
+    "amount": 2000,
+    "currency": "INR",
+    "customer_name": "Siva2494",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9703970670",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Siva2494",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_Sn4JXGPWPHier9",
+    "gateway_txn_id": "pay_Sn4K3Grqvhdbl4",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "604205920130"
+        },
+        "amount": 200000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+919703970670",
+        "created_at": 1778286714,
+        "currency": "INR",
+        "description": "Wallet Top-up for Siva2494",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 5074,
+        "id": "pay_Sn4K3Grqvhdbl4",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Siva2494",
+            "txn_id": "TXN_70C3CC80C141_1778286684"
+        },
+        "order_id": "order_Sn4JXGPWPHier9",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 774,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "9703970670@ptyes"
+        },
+        "vpa": "9703970670@ptyes",
+        "wallet": null
+    },
+    "created_at": "2026-05-09T00:31:24+00:00",
+    "updated_at": "2026-05-09T00:33:18+00:00",
+    "paid_at": "2026-05-09T00:33:18+00:00",
+    "gateway_order_raw": {
+        "amount": 200000,
+        "amount_due": 200000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778286684,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_Sn4JXGPWPHier9",
+        "notes": {
+            "description": "Wallet Top-up for Siva2494",
+            "txn_id": "TXN_70C3CC80C141_1778286684"
+        },
+        "offer_id": null,
+        "receipt": "ORD_94_1778286683",
+        "status": "created"
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "txn_id": "TXN_356692E8B454_1780334324",
+    "order_id": "ORD_298_1780334323",
+    "amount": 150,
+    "currency": "INR",
+    "customer_name": "Raghu9611357316",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9611357316",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Raghu9611357316",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "pending",
+    "gateway_order_id": "order_SwRlNZT7rNSqmR",
+    "gateway_txn_id": null,
+    "gateway_response": null,
+    "created_at": "2026-06-01T17:18:44+00:00",
+    "updated_at": "2026-06-01T17:18:44+00:00",
+    "paid_at": null,
+    "gateway_order_raw": {
+        "amount": 15000,
+        "amount_due": 15000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1780334324,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SwRlNZT7rNSqmR",
+        "notes": {
+            "description": "Wallet Top-up for Raghu9611357316",
+            "txn_id": "TXN_356692E8B454_1780334324"
+        },
+        "offer_id": null,
+        "receipt": "ORD_298_1780334323",
+        "status": "created"
+    }
+}

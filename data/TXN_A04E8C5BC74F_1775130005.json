@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_A04E8C5BC74F_1775130005",
+    "order_id": "TEST1775130004",
+    "amount": 1,
+    "currency": "INR",
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "customer_phone": "9999999999",
+    "gateway": "razorpay",
+    "description": "Colab Test Payment",
+    "return_url": "https:\/\/example.com\/return",
+    "webhook_url": "https:\/\/example.com\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SYbwS9SWtUcmKw",
+    "gateway_txn_id": "pay_SYbzbL7mlGQd7P",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "609230115638"
+        },
+        "amount": 100,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+919315560622",
+        "created_at": 1775130185,
+        "currency": "INR",
+        "description": "Colab Test Payment",
+        "email": "test@example.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 2,
+        "id": "pay_SYbzbL7mlGQd7P",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Colab Test Payment",
+            "txn_id": "TXN_A04E8C5BC74F_1775130005"
+        },
+        "order_id": "order_SYbwS9SWtUcmKw",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 0,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "epicgloryroute@ptaxis"
+        },
+        "vpa": "epicgloryroute@ptaxis",
+        "wallet": null
+    },
+    "created_at": "2026-04-02T19:40:05+08:00",
+    "updated_at": "2026-04-02T19:43:26+08:00",
+    "paid_at": "2026-04-02T19:43:26+08:00",
+    "gateway_order_raw": {
+        "amount": 100,
+        "amount_due": 100,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1775130006,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SYbwS9SWtUcmKw",
+        "notes": {
+            "description": "Colab Test Payment",
+            "txn_id": "TXN_A04E8C5BC74F_1775130005"
+        },
+        "offer_id": null,
+        "receipt": "TEST1775130004",
+        "status": "created"
+    }
+}

@@ -1,0 +1,91 @@
+{
+    "txn_id": "TXN_00F954AD3E99_1783582479",
+    "order_id": "ORD_47_1783582479",
+    "amount": 100,
+    "currency": "INR",
+    "customer_name": "chandu9cha",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9000900955",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for chandu9cha",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "failed",
+    "gateway_order_id": "order_TBK6ygezYiu78n",
+    "gateway_txn_id": "pay_TBK7BG6o3cpYaV",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783583175,
+        "entity": "event",
+        "event": "payment.failed",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": null
+                    },
+                    "amount": 10000,
+                    "amount_refunded": 0,
+                    "bank": null,
+                    "captured": false,
+                    "card_id": null,
+                    "contact": "+919000900955",
+                    "created_at": 1783582491,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for chandu9cha",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": "BAD_REQUEST_ERROR",
+                    "error_description": "Payment was unsuccessful as you could not complete it in time.",
+                    "error_reason": "payment_timed_out",
+                    "error_source": "customer",
+                    "error_step": "payment_authentication",
+                    "fee": null,
+                    "id": "pay_TBK7BG6o3cpYaV",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for chandu9cha",
+                        "txn_id": "TXN_00F954AD3E99_1783582479"
+                    },
+                    "order_id": "order_TBK6ygezYiu78n",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "failed",
+                    "tax": null,
+                    "upi": {
+                        "flow": "intent",
+                        "vpa": null
+                    },
+                    "vpa": null,
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-09T07:34:39+00:00",
+    "updated_at": "2026-07-09T07:46:15+00:00",
+    "paid_at": null,
+    "gateway_order_raw": {
+        "amount": 10000,
+        "amount_due": 10000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783582479,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TBK6ygezYiu78n",
+        "notes": {
+            "description": "Wallet Top-up for chandu9cha",
+            "txn_id": "TXN_00F954AD3E99_1783582479"
+        },
+        "offer_id": null,
+        "receipt": "ORD_47_1783582479",
+        "status": "created"
+    }
+}

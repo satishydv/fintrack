@@ -1,0 +1,77 @@
+{
+    "txn_id": "TXN_742EC6B01A90_1776103034",
+    "order_id": "ORD_63_1776103034",
+    "amount": 1,
+    "currency": "INR",
+    "customer_name": "lavmaurya",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9315560622",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for lavmaurya",
+    "return_url": "https:\/\/vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_Sd4FA1oA44xHI6",
+    "gateway_txn_id": "pay_Sd4FVl6nosJIco",
+    "gateway_response": {
+        "id": "pay_Sd4FVl6nosJIco",
+        "entity": "payment",
+        "amount": 100,
+        "currency": "INR",
+        "status": "captured",
+        "order_id": "order_Sd4FA1oA44xHI6",
+        "invoice_id": null,
+        "international": false,
+        "method": "upi",
+        "amount_refunded": 0,
+        "refund_status": null,
+        "captured": true,
+        "description": "Wallet Top-up for lavmaurya",
+        "card_id": null,
+        "bank": null,
+        "wallet": null,
+        "vpa": "epicgloryroute@ptyes",
+        "email": "customer@default.com",
+        "contact": "+919315560622",
+        "notes": {
+            "txn_id": "TXN_742EC6B01A90_1776103034",
+            "description": "Wallet Top-up for lavmaurya"
+        },
+        "fee": 2,
+        "tax": 0,
+        "error_code": null,
+        "error_description": null,
+        "error_source": null,
+        "error_step": null,
+        "error_reason": null,
+        "acquirer_data": {
+            "rrn": "300723514262"
+        },
+        "created_at": 1776103055,
+        "upi": {
+            "payer_account_type": "bank_account",
+            "vpa": "epicgloryroute@ptyes",
+            "flow": "intent"
+        }
+    },
+    "created_at": "2026-04-14T01:57:14+08:00",
+    "updated_at": "2026-04-14T01:57:52+08:00",
+    "paid_at": "2026-04-14T01:57:52+08:00",
+    "gateway_order_raw": {
+        "amount": 100,
+        "amount_due": 100,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1776103035,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_Sd4FA1oA44xHI6",
+        "notes": {
+            "description": "Wallet Top-up for lavmaurya",
+            "txn_id": "TXN_742EC6B01A90_1776103034"
+        },
+        "offer_id": null,
+        "receipt": "ORD_63_1776103034",
+        "status": "created"
+    }
+}

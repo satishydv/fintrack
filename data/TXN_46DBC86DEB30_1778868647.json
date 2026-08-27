@@ -1,0 +1,81 @@
+{
+    "txn_id": "TXN_46DBC86DEB30_1778868647",
+    "order_id": "ORD_291_1778868647",
+    "amount": 600,
+    "currency": "INR",
+    "customer_name": "Aadi",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8750575642",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Aadi",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SpjZKIKFTdBfQf",
+    "gateway_txn_id": "pay_SpjZOkcq5dtOOa",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "130565968635",
+            "upi_transaction_id": "YBLdc6af952e27b414b8ee0696ada07a88c"
+        },
+        "amount": 60000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+918750575642",
+        "created_at": 1778868652,
+        "currency": "INR",
+        "description": "Wallet Top-up for Aadi",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 1522,
+        "id": "pay_SpjZOkcq5dtOOa",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Aadi",
+            "txn_id": "TXN_46DBC86DEB30_1778868647"
+        },
+        "order_id": "order_SpjZKIKFTdBfQf",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 232,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "8750575642@ybl"
+        },
+        "vpa": "8750575642@ybl",
+        "wallet": null
+    },
+    "created_at": "2026-05-15T18:10:47+00:00",
+    "updated_at": "2026-05-15T18:11:16+00:00",
+    "paid_at": "2026-05-15T18:11:16+00:00",
+    "gateway_order_raw": {
+        "amount": 60000,
+        "amount_due": 60000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778868647,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SpjZKIKFTdBfQf",
+        "notes": {
+            "description": "Wallet Top-up for Aadi",
+            "txn_id": "TXN_46DBC86DEB30_1778868647"
+        },
+        "offer_id": null,
+        "receipt": "ORD_291_1778868647",
+        "status": "created"
+    }
+}

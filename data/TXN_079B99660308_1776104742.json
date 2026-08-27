@@ -1,0 +1,77 @@
+{
+    "txn_id": "TXN_079B99660308_1776104742",
+    "order_id": "ORD_66_1776104742",
+    "amount": 1,
+    "currency": "INR",
+    "customer_name": "lavkush",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8077946720",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for lavkush",
+    "return_url": "https:\/\/vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_Sd4jEFP8DEAXGG",
+    "gateway_txn_id": "pay_Sd4jYMixMEg5Ht",
+    "gateway_response": {
+        "id": "pay_Sd4jYMixMEg5Ht",
+        "entity": "payment",
+        "amount": 100,
+        "currency": "INR",
+        "status": "captured",
+        "order_id": "order_Sd4jEFP8DEAXGG",
+        "invoice_id": null,
+        "international": false,
+        "method": "upi",
+        "amount_refunded": 0,
+        "refund_status": null,
+        "captured": true,
+        "description": "Wallet Top-up for lavkush",
+        "card_id": null,
+        "bank": null,
+        "wallet": null,
+        "vpa": "epicgloryroute@ptyes",
+        "email": "customer@default.com",
+        "contact": "+918077946720",
+        "notes": {
+            "txn_id": "TXN_079B99660308_1776104742",
+            "description": "Wallet Top-up for lavkush"
+        },
+        "fee": 2,
+        "tax": 0,
+        "error_code": null,
+        "error_description": null,
+        "error_source": null,
+        "error_step": null,
+        "error_reason": null,
+        "acquirer_data": {
+            "rrn": "602728671783"
+        },
+        "created_at": 1776104761,
+        "upi": {
+            "payer_account_type": "bank_account",
+            "vpa": "epicgloryroute@ptyes",
+            "flow": "intent"
+        }
+    },
+    "created_at": "2026-04-14T02:25:42+08:00",
+    "updated_at": "2026-04-14T02:26:17+08:00",
+    "paid_at": "2026-04-14T02:26:17+08:00",
+    "gateway_order_raw": {
+        "amount": 100,
+        "amount_due": 100,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1776104742,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_Sd4jEFP8DEAXGG",
+        "notes": {
+            "description": "Wallet Top-up for lavkush",
+            "txn_id": "TXN_079B99660308_1776104742"
+        },
+        "offer_id": null,
+        "receipt": "ORD_66_1776104742",
+        "status": "created"
+    }
+}

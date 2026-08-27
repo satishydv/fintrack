@@ -1,0 +1,105 @@
+{
+    "txn_id": "TXN_FF55E922CBB8_1777724955",
+    "order_id": "ORD_47_1777724955",
+    "amount": 100,
+    "currency": "INR",
+    "customer_name": "chandu9cha",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9000900955",
+    "gateway": "cashfree",
+    "description": "Wallet Top-up for chandu9cha",
+    "return_url": "https:\/\/kara567.com\/cashfree\/verify",
+    "webhook_url": "https:\/\/kara567.com\/auto-pay\/cashfree\/webhook",
+    "status": "paid",
+    "gateway_order_id": "TXN_FF55E922CBB8_1777724955",
+    "gateway_txn_id": "5488557498",
+    "gateway_response": {
+        "cart_details": null,
+        "cf_order_id": "5863555907",
+        "created_at": "2026-05-02T17:59:16+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "chandu9cha",
+            "customer_email": "customer@default.com",
+            "customer_phone": "9000900955",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 100,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-06-01T17:59:16+05:30",
+        "order_id": "TXN_FF55E922CBB8_1777724955",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_FF55E922CBB8_1777724955&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for chandu9cha",
+        "order_splits": [],
+        "order_status": "PAID",
+        "order_tags": null,
+        "payment_session_id": "session_5ME2G5TF6Ql3LD_l5CNj5FsiJQRBFKQkzY-Fa4DWUNFWCoIBYv-i_mJF2IJxlt472HI7_IlBC8XdTVyLz3K1teRlIkAzzJen8NEyCY2JSz3o82FkOXpD0qTrklZu",
+        "terminal_data": null,
+        "payments": [
+            {
+                "auth_id": null,
+                "authorization": null,
+                "bank_reference": "873868154056",
+                "cf_payment_id": "5488557498",
+                "entity": "payment",
+                "error_details": null,
+                "is_captured": true,
+                "order_amount": 100,
+                "order_id": "TXN_FF55E922CBB8_1777724955",
+                "payment_amount": 100,
+                "payment_completion_time": "2026-05-02T17:59:39+05:30",
+                "payment_currency": "INR",
+                "payment_gateway_details": null,
+                "payment_group": "upi",
+                "payment_message": "00::TRANSACTION HAS BEEN APPROVED",
+                "payment_method": {
+                    "upi": {
+                        "channel": "link",
+                        "upi_id": "9666666814-7@axl"
+                    }
+                },
+                "payment_offers": null,
+                "payment_status": "SUCCESS",
+                "payment_time": "2026-05-02T17:59:27+05:30"
+            }
+        ]
+    },
+    "created_at": "2026-05-02T12:29:15+00:00",
+    "updated_at": "2026-05-02T12:38:46+00:00",
+    "paid_at": "2026-05-02T12:38:46+00:00",
+    "cf_payment_session_id": "session_BO555unVH5_5NhMObJ2W_7mC2EEY3d7aERxNbi4iGO7qdFpBQ7QR-pNHmnX8yRg7UtKNYNM3tJ4nQ-YUI41nQow_h5__R3QQvXMf6Bm7mjQnqiXqASWGOqhYI3bQ",
+    "cf_payment_link": null,
+    "gateway_order_raw": {
+        "cart_details": null,
+        "cf_order_id": "5863555907",
+        "created_at": "2026-05-02T17:59:16+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "chandu9cha",
+            "customer_email": "customer@default.com",
+            "customer_phone": "9000900955",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 100,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-06-01T17:59:16+05:30",
+        "order_id": "TXN_FF55E922CBB8_1777724955",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_FF55E922CBB8_1777724955&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for chandu9cha",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_BO555unVH5_5NhMObJ2W_7mC2EEY3d7aERxNbi4iGO7qdFpBQ7QR-pNHmnX8yRg7UtKNYNM3tJ4nQ-YUI41nQow_h5__R3QQvXMf6Bm7mjQnqiXqASWGOqhYI3bQ",
+        "terminal_data": null
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_7E024D0D6AC9_1778775884",
+    "order_id": "ORD_229_1778775883",
+    "amount": 300,
+    "currency": "INR",
+    "customer_name": "Raghu8105819350",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8105819350",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Raghu8105819350",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SpJEAWhRBvzF9P",
+    "gateway_txn_id": "pay_SpJENDaZp7n8wM",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "796037160930"
+        },
+        "amount": 30000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+918105819350",
+        "created_at": 1778775896,
+        "currency": "INR",
+        "description": "Wallet Top-up for Raghu8105819350",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 761,
+        "id": "pay_SpJENDaZp7n8wM",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Raghu8105819350",
+            "txn_id": "TXN_7E024D0D6AC9_1778775884"
+        },
+        "order_id": "order_SpJEAWhRBvzF9P",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 116,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "8105819350-2@axl"
+        },
+        "vpa": "8105819350-2@axl",
+        "wallet": null
+    },
+    "created_at": "2026-05-14T16:24:44+00:00",
+    "updated_at": "2026-05-14T16:25:40+00:00",
+    "paid_at": "2026-05-14T16:25:40+00:00",
+    "gateway_order_raw": {
+        "amount": 30000,
+        "amount_due": 30000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778775884,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SpJEAWhRBvzF9P",
+        "notes": {
+            "description": "Wallet Top-up for Raghu8105819350",
+            "txn_id": "TXN_7E024D0D6AC9_1778775884"
+        },
+        "offer_id": null,
+        "receipt": "ORD_229_1778775883",
+        "status": "created"
+    }
+}

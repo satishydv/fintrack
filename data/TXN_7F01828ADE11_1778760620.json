@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_7F01828ADE11_1778760620",
+    "order_id": "ORD_98_1778760620",
+    "amount": 500,
+    "currency": "INR",
+    "customer_name": "Telugu6559",
+    "customer_email": "customer@default.com",
+    "customer_phone": "7997922942",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Telugu6559",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SpEtRP4p1gL1kA",
+    "gateway_txn_id": "pay_SpEta96yXgQpQM",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "300620725541"
+        },
+        "amount": 50000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+917997922942",
+        "created_at": 1778760628,
+        "currency": "INR",
+        "description": "Wallet Top-up for Telugu6559",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 1269,
+        "id": "pay_SpEta96yXgQpQM",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Telugu6559",
+            "txn_id": "TXN_7F01828ADE11_1778760620"
+        },
+        "order_id": "order_SpEtRP4p1gL1kA",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 194,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "7997922942-3@ybl"
+        },
+        "vpa": "7997922942-3@ybl",
+        "wallet": null
+    },
+    "created_at": "2026-05-14T12:10:20+00:00",
+    "updated_at": "2026-05-14T12:10:57+00:00",
+    "paid_at": "2026-05-14T12:10:57+00:00",
+    "gateway_order_raw": {
+        "amount": 50000,
+        "amount_due": 50000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778760620,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SpEtRP4p1gL1kA",
+        "notes": {
+            "description": "Wallet Top-up for Telugu6559",
+            "txn_id": "TXN_7F01828ADE11_1778760620"
+        },
+        "offer_id": null,
+        "receipt": "ORD_98_1778760620",
+        "status": "created"
+    }
+}

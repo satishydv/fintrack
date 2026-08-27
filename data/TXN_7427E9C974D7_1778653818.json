@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_7427E9C974D7_1778653818",
+    "order_id": "ORD_162_1778653818",
+    "amount": 100,
+    "currency": "INR",
+    "customer_name": "Ramesha07",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8088315853",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Ramesha07",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SokZ8IY36bqtET",
+    "gateway_txn_id": "pay_SokZHOEYvzK8c9",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "425857679992"
+        },
+        "amount": 10000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+918088315853",
+        "created_at": 1778653826,
+        "currency": "INR",
+        "description": "Wallet Top-up for Ramesha07",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 253,
+        "id": "pay_SokZHOEYvzK8c9",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Ramesha07",
+            "txn_id": "TXN_7427E9C974D7_1778653818"
+        },
+        "order_id": "order_SokZ8IY36bqtET",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 38,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "8088315853@ybl"
+        },
+        "vpa": "8088315853@ybl",
+        "wallet": null
+    },
+    "created_at": "2026-05-13T06:30:18+00:00",
+    "updated_at": "2026-05-13T06:30:56+00:00",
+    "paid_at": "2026-05-13T06:30:56+00:00",
+    "gateway_order_raw": {
+        "amount": 10000,
+        "amount_due": 10000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778653818,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SokZ8IY36bqtET",
+        "notes": {
+            "description": "Wallet Top-up for Ramesha07",
+            "txn_id": "TXN_7427E9C974D7_1778653818"
+        },
+        "offer_id": null,
+        "receipt": "ORD_162_1778653818",
+        "status": "created"
+    }
+}

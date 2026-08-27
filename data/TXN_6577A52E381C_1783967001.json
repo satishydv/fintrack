@@ -1,0 +1,93 @@
+{
+    "txn_id": "TXN_6577A52E381C_1783967001",
+    "order_id": "ORD_492_1783967000",
+    "amount": 20000,
+    "currency": "INR",
+    "customer_name": "shadowboom02",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8790129639",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for shadowboom02",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TD5Ih4cKib2cHD",
+    "gateway_txn_id": "pay_TD5IrqDbQoT8GJ",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783967025,
+        "entity": "event",
+        "event": "payment.authorized",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "126250989349"
+                    },
+                    "amount": 2000000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "captured": false,
+                    "card_id": null,
+                    "contact": "+918790129639",
+                    "created_at": 1783967011,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for shadowboom02",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": null,
+                    "id": "pay_TD5IrqDbQoT8GJ",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for shadowboom02",
+                        "txn_id": "TXN_6577A52E381C_1783967001"
+                    },
+                    "order_id": "order_TD5Ih4cKib2cHD",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "authorized",
+                    "tax": null,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "shadowpowerstar0-8@okhdfcbank"
+                    },
+                    "vpa": "shadowpowerstar0-8@okhdfcbank",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-13T18:23:21+00:00",
+    "updated_at": "2026-07-13T18:23:45+00:00",
+    "paid_at": "2026-07-13T18:23:45+00:00",
+    "gateway_order_raw": {
+        "amount": 2000000,
+        "amount_due": 2000000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783967001,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TD5Ih4cKib2cHD",
+        "notes": {
+            "description": "Wallet Top-up for shadowboom02",
+            "txn_id": "TXN_6577A52E381C_1783967001"
+        },
+        "offer_id": null,
+        "receipt": "ORD_492_1783967000",
+        "status": "created"
+    }
+}

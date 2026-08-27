@@ -1,0 +1,92 @@
+{
+    "txn_id": "TXN_39FFC9F5B94D_1784015222",
+    "order_id": "ORD_490_1784015222",
+    "amount": 10000,
+    "currency": "INR",
+    "customer_name": "Rkjani0099",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9929114601",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Rkjani0099",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "failed",
+    "gateway_order_id": "order_TDIzets90G23fB",
+    "gateway_txn_id": "pay_TDJ00owXu8Du6z",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1784015273,
+        "entity": "event",
+        "event": "payment.failed",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": null
+                    },
+                    "amount": 1000000,
+                    "amount_refunded": 0,
+                    "bank": null,
+                    "captured": false,
+                    "card_id": null,
+                    "contact": "+919929114601",
+                    "created_at": 1784015242,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for Rkjani0099",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": "GATEWAY_ERROR",
+                    "error_description": "Payment failed. Please try again with another bank account.",
+                    "error_reason": "payment_declined",
+                    "error_source": "issuer_bank",
+                    "error_step": "payment_debit_request",
+                    "fee": null,
+                    "id": "pay_TDJ00owXu8Du6z",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for Rkjani0099",
+                        "txn_id": "TXN_39FFC9F5B94D_1784015222"
+                    },
+                    "order_id": "order_TDIzets90G23fB",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "failed",
+                    "tax": null,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "rakeshio88440@nyes"
+                    },
+                    "vpa": "rakeshio88440@nyes",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-14T07:47:02+00:00",
+    "updated_at": "2026-07-14T07:47:53+00:00",
+    "paid_at": null,
+    "gateway_order_raw": {
+        "amount": 1000000,
+        "amount_due": 1000000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1784015222,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TDIzets90G23fB",
+        "notes": {
+            "description": "Wallet Top-up for Rkjani0099",
+            "txn_id": "TXN_39FFC9F5B94D_1784015222"
+        },
+        "offer_id": null,
+        "receipt": "ORD_490_1784015222",
+        "status": "created"
+    }
+}

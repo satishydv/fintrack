@@ -1,0 +1,72 @@
+{
+    "txn_id": "TXN_E25F0337707C_1778417425",
+    "order_id": "ORD_121_1778417425",
+    "amount": 300,
+    "currency": "INR",
+    "customer_name": "Ankit",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8130603027",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Ankit",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SnfRJ97XG1jB4v",
+    "gateway_txn_id": "pay_SnfSVYyqCSghvR",
+    "gateway_response": {
+        "acquirer_data": {
+            "transaction_id": null
+        },
+        "amount": 30000,
+        "amount_refunded": 0,
+        "bank": "",
+        "captured": true,
+        "card_id": null,
+        "contact": "+918130603027",
+        "created_at": 1778417494,
+        "currency": "INR",
+        "description": "Wallet Top-up for Ankit",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 761,
+        "id": "pay_SnfSVYyqCSghvR",
+        "international": false,
+        "invoice_id": null,
+        "method": "wallet",
+        "notes": {
+            "description": "Wallet Top-up for Ankit",
+            "txn_id": "TXN_E25F0337707C_1778417425"
+        },
+        "order_id": "order_SnfRJ97XG1jB4v",
+        "refund_status": null,
+        "status": "captured",
+        "tax": 116,
+        "vpa": null,
+        "wallet": "mobikwik"
+    },
+    "created_at": "2026-05-10T12:50:25+00:00",
+    "updated_at": "2026-05-10T12:52:09+00:00",
+    "paid_at": "2026-05-10T12:52:09+00:00",
+    "gateway_order_raw": {
+        "amount": 30000,
+        "amount_due": 30000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778417425,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SnfRJ97XG1jB4v",
+        "notes": {
+            "description": "Wallet Top-up for Ankit",
+            "txn_id": "TXN_E25F0337707C_1778417425"
+        },
+        "offer_id": null,
+        "receipt": "ORD_121_1778417425",
+        "status": "created"
+    }
+}

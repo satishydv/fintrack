@@ -1,0 +1,94 @@
+{
+    "txn_id": "TXN_522E580E5B38_1783609174",
+    "order_id": "ORD_471_1783609174",
+    "amount": 100,
+    "currency": "INR",
+    "customer_name": "Harsha",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9182345092",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Harsha",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TBRgxZPc3ledXj",
+    "gateway_txn_id": "pay_TBRhWLqzbhhOP6",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783609225,
+        "entity": "event",
+        "event": "payment.authorized",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "619017477913",
+                        "upi_transaction_id": "TOTwd2607092030195E338663989F48199A"
+                    },
+                    "amount": 10000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "captured": false,
+                    "card_id": null,
+                    "contact": "+919182345092",
+                    "created_at": 1783609206,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for Harsha",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": null,
+                    "id": "pay_TBRhWLqzbhhOP6",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for Harsha",
+                        "txn_id": "TXN_522E580E5B38_1783609174"
+                    },
+                    "order_id": "order_TBRgxZPc3ledXj",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "authorized",
+                    "tax": null,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "wallet",
+                        "vpa": "9182345092@fam"
+                    },
+                    "vpa": "9182345092@fam",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-09T14:59:34+00:00",
+    "updated_at": "2026-07-09T15:00:25+00:00",
+    "paid_at": "2026-07-09T15:00:25+00:00",
+    "gateway_order_raw": {
+        "amount": 10000,
+        "amount_due": 10000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783609174,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TBRgxZPc3ledXj",
+        "notes": {
+            "description": "Wallet Top-up for Harsha",
+            "txn_id": "TXN_522E580E5B38_1783609174"
+        },
+        "offer_id": null,
+        "receipt": "ORD_471_1783609174",
+        "status": "created"
+    }
+}

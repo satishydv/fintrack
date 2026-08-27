@@ -1,0 +1,93 @@
+{
+    "txn_id": "TXN_EB1DFA588AA5_1783978300",
+    "order_id": "ORD_500_1783978300",
+    "amount": 5000,
+    "currency": "INR",
+    "customer_name": "Recca89",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9008869902",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Recca89",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TD8Vd76eXLltBz",
+    "gateway_txn_id": "pay_TD8VpBZwbWsej2",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783978330,
+        "entity": "event",
+        "event": "payment.authorized",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "619557487266"
+                    },
+                    "amount": 500000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "captured": false,
+                    "card_id": null,
+                    "contact": "+919008869902",
+                    "created_at": 1783978311,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for Recca89",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": null,
+                    "id": "pay_TD8VpBZwbWsej2",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for Recca89",
+                        "txn_id": "TXN_EB1DFA588AA5_1783978300"
+                    },
+                    "order_id": "order_TD8Vd76eXLltBz",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "authorized",
+                    "tax": null,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "9008869902@ptaxis"
+                    },
+                    "vpa": "9008869902@ptaxis",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-13T21:31:40+00:00",
+    "updated_at": "2026-07-13T21:32:11+00:00",
+    "paid_at": "2026-07-13T21:32:11+00:00",
+    "gateway_order_raw": {
+        "amount": 500000,
+        "amount_due": 500000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783978300,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TD8Vd76eXLltBz",
+        "notes": {
+            "description": "Wallet Top-up for Recca89",
+            "txn_id": "TXN_EB1DFA588AA5_1783978300"
+        },
+        "offer_id": null,
+        "receipt": "ORD_500_1783978300",
+        "status": "created"
+    }
+}

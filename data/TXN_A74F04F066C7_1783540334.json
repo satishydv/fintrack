@@ -1,0 +1,94 @@
+{
+    "txn_id": "TXN_A74F04F066C7_1783540334",
+    "order_id": "ORD_408_1783540334",
+    "amount": 1000,
+    "currency": "INR",
+    "customer_name": "Vallepuanil",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9676239563",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Vallepuanil",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TB88zVoXz4WFpM",
+    "gateway_txn_id": "pay_TB89IegdPIE9uo",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783540370,
+        "entity": "event",
+        "event": "payment.captured",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "619001180495"
+                    },
+                    "amount": 100000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "base_amount": 100000,
+                    "captured": true,
+                    "card_id": null,
+                    "contact": "+919676239563",
+                    "created_at": 1783540352,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for Vallepuanil",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": 2538,
+                    "id": "pay_TB89IegdPIE9uo",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for Vallepuanil",
+                        "txn_id": "TXN_A74F04F066C7_1783540334"
+                    },
+                    "order_id": "order_TB88zVoXz4WFpM",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "captured",
+                    "tax": 388,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "a521413@jio"
+                    },
+                    "vpa": "a521413@jio",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-08T19:52:14+00:00",
+    "updated_at": "2026-07-08T19:52:50+00:00",
+    "paid_at": "2026-07-08T19:52:50+00:00",
+    "gateway_order_raw": {
+        "amount": 100000,
+        "amount_due": 100000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783540334,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TB88zVoXz4WFpM",
+        "notes": {
+            "description": "Wallet Top-up for Vallepuanil",
+            "txn_id": "TXN_A74F04F066C7_1783540334"
+        },
+        "offer_id": null,
+        "receipt": "ORD_408_1783540334",
+        "status": "created"
+    }
+}

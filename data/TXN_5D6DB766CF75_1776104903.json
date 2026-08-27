@@ -1,0 +1,77 @@
+{
+    "txn_id": "TXN_5D6DB766CF75_1776104903",
+    "order_id": "ORD_67_1776104903",
+    "amount": 1,
+    "currency": "INR",
+    "customer_name": "hjhyl22g",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8077946720",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for hjhyl22g",
+    "return_url": "https:\/\/vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_Sd4m4L5FUAXdWk",
+    "gateway_txn_id": "pay_Sd4mNIVelDAbLQ",
+    "gateway_response": {
+        "id": "pay_Sd4mNIVelDAbLQ",
+        "entity": "payment",
+        "amount": 100,
+        "currency": "INR",
+        "status": "captured",
+        "order_id": "order_Sd4m4L5FUAXdWk",
+        "invoice_id": null,
+        "international": false,
+        "method": "upi",
+        "amount_refunded": 0,
+        "refund_status": null,
+        "captured": true,
+        "description": "Wallet Top-up for hjhyl22g",
+        "card_id": null,
+        "bank": null,
+        "wallet": null,
+        "vpa": "epicgloryroute@ptyes",
+        "email": "customer@default.com",
+        "contact": "+918077946720",
+        "notes": {
+            "txn_id": "TXN_5D6DB766CF75_1776104903",
+            "description": "Wallet Top-up for hjhyl22g"
+        },
+        "fee": 2,
+        "tax": 0,
+        "error_code": null,
+        "error_description": null,
+        "error_source": null,
+        "error_step": null,
+        "error_reason": null,
+        "acquirer_data": {
+            "rrn": "602728700596"
+        },
+        "created_at": 1776104921,
+        "upi": {
+            "payer_account_type": "bank_account",
+            "vpa": "epicgloryroute@ptyes",
+            "flow": "intent"
+        }
+    },
+    "created_at": "2026-04-14T02:28:23+08:00",
+    "updated_at": "2026-04-14T02:28:57+08:00",
+    "paid_at": "2026-04-14T02:28:57+08:00",
+    "gateway_order_raw": {
+        "amount": 100,
+        "amount_due": 100,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1776104904,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_Sd4m4L5FUAXdWk",
+        "notes": {
+            "description": "Wallet Top-up for hjhyl22g",
+            "txn_id": "TXN_5D6DB766CF75_1776104903"
+        },
+        "offer_id": null,
+        "receipt": "ORD_67_1776104903",
+        "status": "created"
+    }
+}

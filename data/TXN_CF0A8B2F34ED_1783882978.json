@@ -1,0 +1,93 @@
+{
+    "txn_id": "TXN_CF0A8B2F34ED_1783882978",
+    "order_id": "ORD_494_1783882978",
+    "amount": 2000,
+    "currency": "INR",
+    "customer_name": "Raksham29",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8094542554",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Raksham29",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TChRQxpGoas8h7",
+    "gateway_txn_id": "pay_TChRdgsY35ILfu",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783883075,
+        "entity": "event",
+        "event": "payment.authorized",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "937069345892"
+                    },
+                    "amount": 200000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "captured": false,
+                    "card_id": null,
+                    "contact": "+918094542554",
+                    "created_at": 1783882990,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for Raksham29",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": null,
+                    "id": "pay_TChRdgsY35ILfu",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for Raksham29",
+                        "txn_id": "TXN_CF0A8B2F34ED_1783882978"
+                    },
+                    "order_id": "order_TChRQxpGoas8h7",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "authorized",
+                    "tax": null,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "9116825054-4@ybl"
+                    },
+                    "vpa": "9116825054-4@ybl",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-12T19:02:58+00:00",
+    "updated_at": "2026-07-12T19:04:36+00:00",
+    "paid_at": "2026-07-12T19:04:36+00:00",
+    "gateway_order_raw": {
+        "amount": 200000,
+        "amount_due": 200000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783882978,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TChRQxpGoas8h7",
+        "notes": {
+            "description": "Wallet Top-up for Raksham29",
+            "txn_id": "TXN_CF0A8B2F34ED_1783882978"
+        },
+        "offer_id": null,
+        "receipt": "ORD_494_1783882978",
+        "status": "created"
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_A521C0E9971F_1775197053",
+    "order_id": "ORD_47_1775197053",
+    "amount": 100,
+    "currency": "INR",
+    "customer_name": "chandu9cha",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9000900955",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for chandu9cha",
+    "return_url": "https:\/\/www.vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/www.vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SYuys2Ecb0PO05",
+    "gateway_txn_id": "pay_SYuz1I2tCp4IDk",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "582486485876"
+        },
+        "amount": 10000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+919000900955",
+        "created_at": 1775197063,
+        "currency": "INR",
+        "description": "Wallet Top-up for chandu9cha",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 236,
+        "id": "pay_SYuz1I2tCp4IDk",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for chandu9cha",
+            "txn_id": "TXN_A521C0E9971F_1775197053"
+        },
+        "order_id": "order_SYuys2Ecb0PO05",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 36,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "chandrakanth.bestha@ybl"
+        },
+        "vpa": "chandrakanth.bestha@ybl",
+        "wallet": null
+    },
+    "created_at": "2026-04-03T14:17:33+08:00",
+    "updated_at": "2026-04-03T14:18:15+08:00",
+    "paid_at": "2026-04-03T14:18:15+08:00",
+    "gateway_order_raw": {
+        "amount": 10000,
+        "amount_due": 10000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1775197054,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SYuys2Ecb0PO05",
+        "notes": {
+            "description": "Wallet Top-up for chandu9cha",
+            "txn_id": "TXN_A521C0E9971F_1775197053"
+        },
+        "offer_id": null,
+        "receipt": "ORD_47_1775197053",
+        "status": "created"
+    }
+}

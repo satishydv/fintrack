@@ -1,0 +1,77 @@
+{
+    "txn_id": "TXN_09C0E81B7E0E_1775259152",
+    "order_id": "ORD_5_1775259152",
+    "amount": 1,
+    "currency": "INR",
+    "customer_name": "user1",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9315560622",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for user1",
+    "return_url": "https:\/\/vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SZCc9uJmxEfnMY",
+    "gateway_txn_id": "pay_SZCczzUDEX4eeB",
+    "gateway_response": {
+        "id": "pay_SZCczzUDEX4eeB",
+        "entity": "payment",
+        "amount": 100,
+        "currency": "INR",
+        "status": "captured",
+        "order_id": "order_SZCc9uJmxEfnMY",
+        "invoice_id": null,
+        "international": false,
+        "method": "upi",
+        "amount_refunded": 0,
+        "refund_status": null,
+        "captured": true,
+        "description": "Wallet Top-up for user1",
+        "card_id": null,
+        "bank": null,
+        "wallet": null,
+        "vpa": "epicgloryroute@ptyes",
+        "email": "customer@default.com",
+        "contact": "+919315560622",
+        "notes": {
+            "txn_id": "TXN_09C0E81B7E0E_1775259152",
+            "description": "Wallet Top-up for user1"
+        },
+        "fee": 2,
+        "tax": 0,
+        "error_code": null,
+        "error_description": null,
+        "error_source": null,
+        "error_step": null,
+        "error_reason": null,
+        "acquirer_data": {
+            "rrn": "203251930541"
+        },
+        "created_at": 1775259202,
+        "upi": {
+            "payer_account_type": "bank_account",
+            "vpa": "epicgloryroute@ptyes",
+            "flow": "intent"
+        }
+    },
+    "created_at": "2026-04-04T07:32:32+08:00",
+    "updated_at": "2026-04-04T07:33:39+08:00",
+    "paid_at": "2026-04-04T07:33:39+08:00",
+    "gateway_order_raw": {
+        "amount": 100,
+        "amount_due": 100,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1775259153,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SZCc9uJmxEfnMY",
+        "notes": {
+            "description": "Wallet Top-up for user1",
+            "txn_id": "TXN_09C0E81B7E0E_1775259152"
+        },
+        "offer_id": null,
+        "receipt": "ORD_5_1775259152",
+        "status": "created"
+    }
+}

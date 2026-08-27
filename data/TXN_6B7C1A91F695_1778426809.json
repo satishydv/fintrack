@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_6B7C1A91F695_1778426809",
+    "order_id": "ORD_125_1778426809",
+    "amount": 200,
+    "currency": "INR",
+    "customer_name": "Sahilmu",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9990984441",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Sahilmu",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_Sni6VzWN85FeVN",
+    "gateway_txn_id": "pay_Sni6dSXHVvhHa3",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "613039264666"
+        },
+        "amount": 20000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+919990984441",
+        "created_at": 1778426816,
+        "currency": "INR",
+        "description": "Wallet Top-up for Sahilmu",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 508,
+        "id": "pay_Sni6dSXHVvhHa3",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Sahilmu",
+            "txn_id": "TXN_6B7C1A91F695_1778426809"
+        },
+        "order_id": "order_Sni6VzWN85FeVN",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 78,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "9990984441@ptsbi"
+        },
+        "vpa": "9990984441@ptsbi",
+        "wallet": null
+    },
+    "created_at": "2026-05-10T15:26:49+00:00",
+    "updated_at": "2026-05-10T15:27:24+00:00",
+    "paid_at": "2026-05-10T15:27:24+00:00",
+    "gateway_order_raw": {
+        "amount": 20000,
+        "amount_due": 20000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1778426809,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_Sni6VzWN85FeVN",
+        "notes": {
+            "description": "Wallet Top-up for Sahilmu",
+            "txn_id": "TXN_6B7C1A91F695_1778426809"
+        },
+        "offer_id": null,
+        "receipt": "ORD_125_1778426809",
+        "status": "created"
+    }
+}

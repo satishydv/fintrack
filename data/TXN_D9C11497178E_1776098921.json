@@ -1,0 +1,77 @@
+{
+    "txn_id": "TXN_D9C11497178E_1776098921",
+    "order_id": "ORD_58_1776098921",
+    "amount": 1,
+    "currency": "INR",
+    "customer_name": "mannu",
+    "customer_email": "customer@default.com",
+    "customer_phone": "7451000200",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for mannu",
+    "return_url": "https:\/\/vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_Sd34kKCLiFBB6z",
+    "gateway_txn_id": "pay_Sd356Fwr81Jp1s",
+    "gateway_response": {
+        "id": "pay_Sd356Fwr81Jp1s",
+        "entity": "payment",
+        "amount": 100,
+        "currency": "INR",
+        "status": "captured",
+        "order_id": "order_Sd34kKCLiFBB6z",
+        "invoice_id": null,
+        "international": false,
+        "method": "upi",
+        "amount_refunded": 0,
+        "refund_status": null,
+        "captured": true,
+        "description": "Wallet Top-up for mannu",
+        "card_id": null,
+        "bank": null,
+        "wallet": null,
+        "vpa": "epicgloryroute@ptaxis",
+        "email": "customer@default.com",
+        "contact": "+917451000200",
+        "notes": {
+            "txn_id": "TXN_D9C11497178E_1776098921",
+            "description": "Wallet Top-up for mannu"
+        },
+        "fee": 2,
+        "tax": 0,
+        "error_code": null,
+        "error_description": null,
+        "error_source": null,
+        "error_step": null,
+        "error_reason": null,
+        "acquirer_data": {
+            "rrn": "610305213125"
+        },
+        "created_at": 1776098942,
+        "upi": {
+            "payer_account_type": "bank_account",
+            "vpa": "epicgloryroute@ptaxis",
+            "flow": "intent"
+        }
+    },
+    "created_at": "2026-04-14T00:48:41+08:00",
+    "updated_at": "2026-04-14T00:49:19+08:00",
+    "paid_at": "2026-04-14T00:49:19+08:00",
+    "gateway_order_raw": {
+        "amount": 100,
+        "amount_due": 100,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1776098921,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_Sd34kKCLiFBB6z",
+        "notes": {
+            "description": "Wallet Top-up for mannu",
+            "txn_id": "TXN_D9C11497178E_1776098921"
+        },
+        "offer_id": null,
+        "receipt": "ORD_58_1776098921",
+        "status": "created"
+    }
+}

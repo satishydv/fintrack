@@ -1,0 +1,80 @@
+{
+    "txn_id": "TXN_E76D3A7F7256_1775196703",
+    "order_id": "ORD_50_1775196703",
+    "amount": 100,
+    "currency": "INR",
+    "customer_name": "Rossi46",
+    "customer_email": "customer@default.com",
+    "customer_phone": "6362246962",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Rossi46",
+    "return_url": "https:\/\/www.vara567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/www.vara567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_SYusiBhqIPcp0e",
+    "gateway_txn_id": "pay_SYusrwnCv5emuV",
+    "gateway_response": {
+        "acquirer_data": {
+            "rrn": "609394124571"
+        },
+        "amount": 10000,
+        "amount_captured": null,
+        "amount_refunded": 0,
+        "bank": null,
+        "captured": true,
+        "card_id": null,
+        "contact": "+916362246962",
+        "created_at": 1775196713,
+        "currency": "INR",
+        "description": "Wallet Top-up for Rossi46",
+        "email": "customer@default.com",
+        "entity": "payment",
+        "error_code": null,
+        "error_description": null,
+        "error_reason": null,
+        "error_source": null,
+        "error_step": null,
+        "fee": 236,
+        "id": "pay_SYusrwnCv5emuV",
+        "international": false,
+        "invoice_id": null,
+        "method": "upi",
+        "notes": {
+            "description": "Wallet Top-up for Rossi46",
+            "txn_id": "TXN_E76D3A7F7256_1775196703"
+        },
+        "order_id": "order_SYusiBhqIPcp0e",
+        "provider": null,
+        "refund_status": null,
+        "reward": null,
+        "status": "captured",
+        "tax": 36,
+        "upi": {
+            "flow": "intent",
+            "payer_account_type": "bank_account",
+            "vpa": "sharvi07122024@oksbi"
+        },
+        "vpa": "sharvi07122024@oksbi",
+        "wallet": null
+    },
+    "created_at": "2026-04-03T14:11:43+08:00",
+    "updated_at": "2026-04-03T14:12:21+08:00",
+    "paid_at": "2026-04-03T14:12:21+08:00",
+    "gateway_order_raw": {
+        "amount": 10000,
+        "amount_due": 10000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1775196704,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_SYusiBhqIPcp0e",
+        "notes": {
+            "description": "Wallet Top-up for Rossi46",
+            "txn_id": "TXN_E76D3A7F7256_1775196703"
+        },
+        "offer_id": null,
+        "receipt": "ORD_50_1775196703",
+        "status": "created"
+    }
+}

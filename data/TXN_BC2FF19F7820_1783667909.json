@@ -1,0 +1,95 @@
+{
+    "txn_id": "TXN_BC2FF19F7820_1783667909",
+    "order_id": "ORD_475_1783667909",
+    "amount": 20000,
+    "currency": "INR",
+    "customer_name": "Kalwant0050",
+    "customer_email": "customer@default.com",
+    "customer_phone": "6376948683",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for Kalwant0050",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TBiN1OYXk9xMAc",
+    "gateway_txn_id": "pay_TBiNgylniziaB6",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783667976,
+        "entity": "event",
+        "event": "payment.captured",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "003297443270",
+                        "upi_transaction_id": "YBN20260710113146179337402317578260"
+                    },
+                    "amount": 2000000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "base_amount": 2000000,
+                    "captured": true,
+                    "card_id": null,
+                    "contact": "+916376948683",
+                    "created_at": 1783667947,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for Kalwant0050",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": 50740,
+                    "id": "pay_TBiNgylniziaB6",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for Kalwant0050",
+                        "txn_id": "TXN_BC2FF19F7820_1783667909"
+                    },
+                    "order_id": "order_TBiN1OYXk9xMAc",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "captured",
+                    "tax": 7740,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "9612492929@nyes"
+                    },
+                    "vpa": "9612492929@nyes",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-10T07:18:29+00:00",
+    "updated_at": "2026-07-10T07:19:36+00:00",
+    "paid_at": "2026-07-10T07:19:36+00:00",
+    "gateway_order_raw": {
+        "amount": 2000000,
+        "amount_due": 2000000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783667909,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TBiN1OYXk9xMAc",
+        "notes": {
+            "description": "Wallet Top-up for Kalwant0050",
+            "txn_id": "TXN_BC2FF19F7820_1783667909"
+        },
+        "offer_id": null,
+        "receipt": "ORD_475_1783667909",
+        "status": "created"
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "txn_id": "TXN_AB9790FC1CCF_1783666439",
+    "order_id": "ORD_468_1783666439",
+    "amount": 15000,
+    "currency": "INR",
+    "customer_name": "mahipalb12",
+    "customer_email": "customer@default.com",
+    "customer_phone": "7851841824",
+    "gateway": "razorpay",
+    "description": "Wallet Top-up for mahipalb12",
+    "return_url": "https:\/\/vara-567.com\/razorpay\/callback",
+    "webhook_url": "https:\/\/vara-567.com\/razorpay\/webhook",
+    "status": "paid",
+    "gateway_order_id": "order_TBhx996TOSCg8H",
+    "gateway_txn_id": "pay_TBhxJNaKKDzjta",
+    "gateway_response": {
+        "account_id": "acc_QsCwiHsy4CLHir",
+        "contains": [
+            "payment"
+        ],
+        "created_at": 1783666468,
+        "entity": "event",
+        "event": "payment.captured",
+        "payload": {
+            "payment": {
+                "entity": {
+                    "acquirer_data": {
+                        "rrn": "310108705588"
+                    },
+                    "amount": 1500000,
+                    "amount_refunded": 0,
+                    "amount_transferred": 0,
+                    "bank": null,
+                    "base_amount": 1500000,
+                    "captured": true,
+                    "card_id": null,
+                    "contact": "+917851841824",
+                    "created_at": 1783666449,
+                    "currency": "INR",
+                    "description": "Wallet Top-up for mahipalb12",
+                    "email": "customer@default.com",
+                    "entity": "payment",
+                    "error_code": null,
+                    "error_description": null,
+                    "error_reason": null,
+                    "error_source": null,
+                    "error_step": null,
+                    "fee": 38056,
+                    "id": "pay_TBhxJNaKKDzjta",
+                    "international": false,
+                    "invoice_id": null,
+                    "method": "upi",
+                    "notes": {
+                        "description": "Wallet Top-up for mahipalb12",
+                        "txn_id": "TXN_AB9790FC1CCF_1783666439"
+                    },
+                    "order_id": "order_TBhx996TOSCg8H",
+                    "provider": null,
+                    "refund_status": null,
+                    "reward": null,
+                    "status": "captured",
+                    "tax": 5806,
+                    "upi": {
+                        "flow": "intent",
+                        "payer_account_type": "bank_account",
+                        "vpa": "7568854195@ptyes"
+                    },
+                    "vpa": "7568854195@ptyes",
+                    "wallet": null
+                }
+            }
+        }
+    },
+    "created_at": "2026-07-10T06:53:59+00:00",
+    "updated_at": "2026-07-10T06:54:28+00:00",
+    "paid_at": "2026-07-10T06:54:28+00:00",
+    "gateway_order_raw": {
+        "amount": 1500000,
+        "amount_due": 1500000,
+        "amount_paid": 0,
+        "attempts": 0,
+        "created_at": 1783666440,
+        "currency": "INR",
+        "entity": "order",
+        "id": "order_TBhx996TOSCg8H",
+        "notes": {
+            "description": "Wallet Top-up for mahipalb12",
+            "txn_id": "TXN_AB9790FC1CCF_1783666439"
+        },
+        "offer_id": null,
+        "receipt": "ORD_468_1783666439",
+        "status": "created"
+    }
+}
