@@ -1,6 +1,6 @@
 # 💳 Payment Gateway Aggregator
-**Hosted at:** https://pay.rudhvedinfotech.com  
-**Integrates with:** https://vara567.com (Laravel)  
+**Hosted at:** https://pay.yourdomain.com  
+**Integrates with:** https://your-laravel-app.com (Laravel)  
 **Supports:** Razorpay + Cashfree + PayU
 
 ---
@@ -16,8 +16,8 @@ payment-gateway/
 ├── return.php               ← Post-payment redirect handler
 ├── webhook.php              ← Server-to-server webhooks
 ├── api/
-│   ├── initiate.php         ← POST: vara567.com calls this to create payment
-│   └── status.php           ← GET: vara567.com polls payment status
+│   ├── initiate.php         ← POST: your-laravel-app.com calls this to create payment
+│   └── status.php           ← GET: your-laravel-app.com polls payment status
 ├── lib/
 │   ├── helpers.php          ← Core utilities
 │   ├── Razorpay.php         ← Razorpay API
@@ -32,7 +32,7 @@ payment-gateway/
 ## 🚀 Setup Steps
 
 ### 1. Upload to Server
-Upload all files to `https://pay.rudhvedinfotech.com`
+Upload all files to `https://pay.yourdomain.com`
 
 ### 2. Set File Permissions
 ```bash
@@ -42,31 +42,31 @@ chmod 644 data/.htaccess
 
 ### 3. Edit `config.php`
 Change these values:
-- `api_key` → Pick a strong shared secret (same key in vara567.com .env)
+- `api_key` → Pick a strong shared secret (same key in your-laravel-app.com .env)
 - `dashboard_password` → Your secure dashboard password
 
 ### 4. Register Webhooks in Gateways
 
 **Razorpay Dashboard:**
 - Go to Settings → Webhooks
-- Add URL: `https://pay.rudhvedinfotech.com/webhook.php?gateway=razorpay`
+- Add URL: `https://pay.yourdomain.com/webhook.php?gateway=razorpay`
 - Events to subscribe: `payment.captured`, `payment.failed`, `payment.authorized`
 
 **Cashfree Dashboard:**
 - Go to Developers → Webhooks
-- Add URL: `https://pay.rudhvedinfotech.com/webhook.php?gateway=cashfree`
+- Add URL: `https://pay.yourdomain.com/webhook.php?gateway=cashfree`
 - Events: `PAYMENT_SUCCESS`, `PAYMENT_FAILED`
 
-### 5. Configure vara567.com (Laravel)
+### 5. Configure your-laravel-app.com (Laravel)
 In your `.env`:
 ```env
 PAYMENT_API_KEY=VARA567_CHANGE_THIS_SECRET_KEY_2024
-PAYMENT_BASE_URL=https://pay.rudhvedinfotech.com
+PAYMENT_BASE_URL=https://pay.yourdomain.com
 ```
 
 ---
 
-## 🔌 Laravel Integration (vara567.com)
+## 🔌 Laravel Integration (your-laravel-app.com)
 
 ### Step 1 — Initiate Payment
 
@@ -163,7 +163,7 @@ $status = Http::withHeaders([
 ---
 
 ## 📊 Dashboard
-- URL: `https://pay.rudhvedinfotech.com`
+- URL: `https://pay.yourdomain.com`
 - Login with your `dashboard_password` from `config.php`
 - Shows all transactions, revenue totals, gateway breakdown
 - Click any transaction to view full details + raw gateway response
@@ -177,7 +177,7 @@ $status = Http::withHeaders([
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| order_id | string | ✅ | Your order ID from vara567.com |
+| order_id | string | ✅ | Your order ID from your-laravel-app.com |
 | amount | float | ✅ | Amount in INR |
 | currency | string | | Default: INR |
 | customer_name | string | ✅ | |
@@ -193,7 +193,7 @@ $status = Http::withHeaders([
 {
   "success": true,
   "txn_id": "TXN_ABC123_1704067200",
-  "payment_url": "https://pay.rudhvedinfotech.com/pay.php?txn=TXN_ABC123_1704067200",
+  "payment_url": "https://pay.yourdomain.com/pay.php?txn=TXN_ABC123_1704067200",
   "gateway": "razorpay",
   "amount": 499.00,
   "currency": "INR"
@@ -217,7 +217,7 @@ $status = Http::withHeaders([
 }
 ```
 
-### Webhook Payload (sent to vara567.com)
+### Webhook Payload (sent to your-laravel-app.com)
 ```json
 {
   "event": "payment.paid",
@@ -250,7 +250,7 @@ $status = Http::withHeaders([
 ## 🔄 Payment Flow
 
 ```
-vara567.com                    pay.rudhvedinfotech.com           Gateway
+your-laravel-app.com                    pay.yourdomain.com           Gateway
     │                                   │                           │
     │ POST /api/initiate.php            │                           │
     │ {order_id, amount, gateway...} ──►│                           │
