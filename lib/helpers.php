@@ -432,3 +432,6 @@ function log_error(string $msg): void {
     $log = $config['data_dir'] . '/error.log';
     file_put_contents($log, date('c') . ' ' . $msg . PHP_EOL, FILE_APPEND);
 }
+
+require_once __DIR__ . '/SmartRouter.php';
+

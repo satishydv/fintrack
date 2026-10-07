@@ -14,9 +14,15 @@ if ($_GET['logout'] ?? false) {
 }
 
 $section = $_GET['section'] ?? 'dashboard';
-if (!in_array($section, ['dashboard', 'risk', 'transactions', 'gateway', 'reports', 'help'], true)) {
+if (!in_array($section, ['dashboard', 'risk', 'transactions', 'gateway', 'routing', 'reports', 'help'], true)) {
     $section = 'dashboard';
 }
+
+require_once __DIR__ . '/lib/SmartRouter.php';
+$routing_config = SmartRouter::getConfig();
+$gateway_metrics = SmartRouter::getGatewayMetrics();
+$gateway_ranking = SmartRouter::rankGateways();
+$tripped_circuits_count = count(array_filter($gateway_metrics, fn($m) => $m['circuit_status'] === 'tripped'));
 
 $txns = txn_list();
 $total_txns = count($txns);
@@ -301,12 +307,13 @@ foreach ($gateway_analytics as $stats) {
 
 $base_url = rtrim((string)($config['pay_url'] ?? ''), '/');
 $section_titles = [
-    'dashboard' => 'Dashboard',
-    'risk' => 'Risk & Fraud',
+    'dashboard'    => 'Dashboard',
+    'risk'         => 'Risk & Fraud',
     'transactions' => 'Transactions',
-    'gateway' => 'Gateway Analytics',
-    'reports' => 'Reports',
-    'help' => 'Help & Integration',
+    'gateway'      => 'Gateway Analytics',
+    'routing'      => 'Smart Routing Control Center',
+    'reports'      => 'Reports',
+    'help'         => 'Help & Integration',
 ];
 
 $recent_txns = array_slice($txns, 0, 10);
@@ -398,6 +405,52 @@ a{color:inherit;text-decoration:none}
 @media(max-width:1060px){.dashboard-grid,.risk-layout{grid-template-columns:1fr}.report-grid,.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.risk-grid{grid-template-columns:repeat(2,1fr)}.stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.analytics-layout,.help-layout{grid-template-columns:1fr}.help-aside{position:static;grid-template-columns:repeat(3,minmax(0,1fr))}.sidebar{width:210px}.search{width:190px}}
 @media(max-width:860px){body{display:block}.sidebar{position:sticky;top:0;z-index:20;width:100%;min-height:0;border-right:0;border-bottom:1px solid #1b1d20;padding:14px;gap:12px}.brand{justify-content:space-between}.profile,.nav-label,.support{display:none}.nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav-item{height:36px;padding:0 14px;flex:0 0 auto}.main{padding:14px}.topbar{height:auto;align-items:flex-start;gap:10px}.tools{display:flex;flex-wrap:wrap;justify-content:flex-end}.search{width:min(100%,210px)}.alert{height:auto;align-items:flex-start;gap:10px;padding:12px;line-height:1.45}.stat-grid{grid-template-columns:1fr}.risk-grid{grid-template-columns:1fr 1fr}.chart{height:220px}.bars{height:160px}.side-stack{grid-template-columns:1fr}.table-header .search{display:none}.gateway-row{grid-template-columns:minmax(130px,1.2fr) repeat(2,minmax(75px,.7fr))}.gateway-row .gateway-stat:nth-last-child(-n+2){display:none}.ops-grid{grid-template-columns:1fr 1fr}.help-aside{grid-template-columns:1fr}.modal{max-height:90vh}.detail-row{grid-template-columns:1fr;gap:5px}}
 @media(max-width:540px){.main{padding:12px}.page-title{font-size:17px}.tools{display:none}.risk-grid,.filter-grid,.report-grid,.metric-grid,.ops-grid{grid-template-columns:1fr}.card-pad{padding:14px}.stat-value{font-size:23px}.stat-sub{display:grid}.analytics-hero{padding:18px}.analytics-hero-content{display:block}.analytics-hero h1,.help-hero h1{font-size:21px}.health-summary{margin-top:16px;min-width:0}.health-orbit{margin:9px 0 6px}.health-summary-copy{text-align:left}.gateway-row{grid-template-columns:minmax(120px,1.2fr) minmax(78px,.7fr);padding:12px}.gateway-row .gateway-stat:nth-child(n+3){display:none}.traffic-chart{gap:7px;padding-left:10px;padding-right:10px}.traffic-stack{width:24px}.legend{display:none}.help-hero{padding:18px}.integration-step{grid-template-columns:1fr}.step-number{margin-bottom:2px}.env-strip,.endpoint-strip{align-items:flex-start;flex-direction:column}.chart{height:196px;padding:12px}.bars{height:135px;gap:8px;margin-top:22px}.months{gap:6px;font-size:9px}.risk-meter{height:132px}.meter-big{font-size:32px}.table-card{border-radius:8px;margin-left:-2px;margin-right:-2px}table{min-width:720px}th,td{padding:0 10px}.modal-overlay{padding:10px}.modal-body{padding:14px}.sidebar{padding:12px}.brand-name{font-size:14px}.brand-mark{width:28px;height:28px}.nav-item{font-size:11px;height:34px;padding:0 12px}.report-box{border-radius:14px;padding:16px}.report-code{font-size:12px}.report-token-card{min-height:155px}}
+.routing-hero{position:relative;overflow:hidden;border:1px solid #233e38;border-radius:14px;padding:22px;margin-bottom:14px;background:radial-gradient(circle at 85% 15%,rgba(59,227,239,.18),transparent 28%),radial-gradient(circle at 5% 90%,rgba(82,210,115,.15),transparent 32%),linear-gradient(135deg,#0d1616,#0e1114 58%,#121817)}
+.routing-hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.routing-switch-box{min-width:240px;padding:16px;border:1px solid rgba(59,227,239,.22);border-radius:12px;background:rgba(9,14,15,.7);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.switch-meta strong{font-size:13px;display:block}
+.switch-meta span{font-size:10px;color:#8f9aa5;margin-top:2px;display:block}
+.toggle-switch{position:relative;display:inline-block;width:54px;height:30px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;cursor:pointer;inset:0;background:#24282f;transition:.3s;border-radius:34px;border:1px solid #363c46}
+.toggle-slider:before{position:absolute;content:"";height:22px;width:22px;left:3px;bottom:3px;background:#c9d0d8;transition:.3s;border-radius:50%}
+input:checked + .toggle-slider{background:linear-gradient(90deg,#3be3ef,#52d273);border-color:#52d273;box-shadow:0 0 16px rgba(82,210,115,.35)}
+input:checked + .toggle-slider:before{transform:translateX(24px);background:#07120e}
+.status-beacon{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.status-beacon.active{background:#52d273;box-shadow:0 0 10px #52d273}
+.status-beacon.off{background:#e8c94d;box-shadow:0 0 8px #e8c94d}
+.routing-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,.9fr);gap:14px;margin-bottom:14px}
+.strategy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.strategy-option{position:relative;border:1px solid #23282f;border-radius:9px;padding:14px;background:#131619;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;justify-content:space-between}
+.strategy-option:hover{border-color:#3be3ef;background:#171b1f}
+.strategy-option.selected{border-color:#3be3ef;background:radial-gradient(circle at 90% 10%,rgba(59,227,239,.18),transparent 45%),#15191d;box-shadow:0 0 22px rgba(59,227,239,.1)}
+.strategy-option input[type=radio]{position:absolute;top:14px;right:14px;accent-color:#3be3ef}
+.strategy-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+.strategy-desc{font-size:10px;color:#85909c;margin-top:8px;line-height:1.5}
+.strategy-badge{font-size:8px;font-weight:800;padding:2px 6px;border-radius:99px;background:rgba(59,227,239,.12);color:#3be3ef;width:fit-content;margin-top:10px}
+.pool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.pool-item{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #23282f;border-radius:8px;background:#131619;cursor:pointer}
+.pool-item:hover{border-color:#3be3ef}
+.pool-item input[type=checkbox]{accent-color:#3be3ef;width:16px;height:16px}
+.pool-item strong{font-size:12px;text-transform:capitalize}
+.param-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.leaderboard-list{display:grid;gap:10px;margin-top:12px}
+.leaderboard-row{padding:13px;border:1px solid #242930;border-radius:9px;background:#14171a;display:flex;flex-direction:column;gap:9px}
+.leaderboard-top{display:flex;align-items:center;justify-content:space-between}
+.leaderboard-ident{display:flex;align-items:center;gap:9px}
+.rank-num{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:900}
+.rank-num.r1{background:linear-gradient(135deg,#e8c94d,#ffb830);color:#1c1300}
+.rank-num.r2{background:linear-gradient(135deg,#b8c4d2,#8896a5);color:#0c1116}
+.rank-num.r3{background:linear-gradient(135deg,#c78453,#9c5225);color:#170a03}
+.leaderboard-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:9px;color:#85909c}
+.mini-bar-track{height:5px;border-radius:99px;background:#24282e;margin-top:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,#3be3ef,#52d273)}
+.mini-bar-fill.latency{background:linear-gradient(90deg,#3be3ef,#7aa7ff)}
+.leaderboard-reason{font-size:10px;color:#a8b4c0;background:#0d0f11;border-radius:6px;padding:6px 9px;border:1px solid #1e2227}
+.sim-output{margin-top:12px;padding:12px;border:1px solid #242930;border-radius:8px;background:#0b0d0f;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10px;color:#bec9d3;white-space:pre-wrap;max-height:220px;overflow-y:auto;display:none}
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 18px;border-radius:8px;background:#18281e;border:1px solid #367c4e;color:#8cf5ac;font-size:12px;font-weight:600;box-shadow:0 12px 34px rgba(0,0,0,.5);z-index:99;display:none;align-items:center;gap:8px}
+@media(max-width:1060px){.routing-layout{grid-template-columns:1fr}}
+@media(max-width:540px){.strategy-grid,.pool-grid,.param-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -417,6 +470,7 @@ a{color:inherit;text-decoration:none}
       <a class="nav-item <?= $section === 'risk' ? 'active' : '' ?>" href="?section=risk"><span class="nav-ico"><svg viewBox="0 0 24 24"><path d="M12 3.5 19 7v5.4c0 4-2.7 7.1-7 8.1-4.3-1-7-4.1-7-8.1V7l7-3.5Z"/><path d="M9.5 12.5 11.2 14l3.4-4"/></svg></span>Risk & Fraud</a>
       <a class="nav-item <?= $section === 'transactions' ? 'active' : '' ?>" href="?section=transactions"><span class="nav-ico"><svg viewBox="0 0 24 24"><path d="M7 7h10"/><path d="M7 12h7"/><path d="M7 17h10"/><path d="M4.5 4h15v16h-15z"/></svg></span>Transactions</a>
       <a class="nav-item <?= $section === 'gateway' ? 'active' : '' ?>" href="?section=gateway"><span class="nav-ico"><svg viewBox="0 0 24 24"><path d="M4 18V8"/><path d="M10 18V5"/><path d="M16 18v-7"/><path d="M21 18H3"/></svg></span>Gateway Analytics</a>
+      <a class="nav-item <?= $section === 'routing' ? 'active' : '' ?>" href="?section=routing"><span class="nav-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></span>Smart Routing <span class="badge <?= $routing_config['enabled'] ? 'normal' : 'watch' ?>" style="margin-left:auto;font-size:9px;padding:1px 5px"><?= $routing_config['enabled'] ? 'ON' : 'OFF' ?></span></a>
       <a class="nav-item <?= $section === 'reports' ? 'active' : '' ?>" href="?section=reports"><span class="nav-ico"><svg viewBox="0 0 24 24"><path d="M7 4h8l3 3v13H7z"/><path d="M15 4v4h4"/><path d="M9.5 13h5"/><path d="M9.5 17h4"/></svg></span>Reports</a>
       <a class="nav-item <?= $section === 'help' ? 'active' : '' ?>" href="?section=help"><span class="nav-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.5 2.5 0 0 1 4.8 1c0 1.7-2.5 2-2.5 3.8"/><path d="M12 17.5h.01"/></svg></span>Help & Integration</a>
     </nav>
@@ -435,6 +489,8 @@ a{color:inherit;text-decoration:none}
         <input class="search" type="text" placeholder="Search transactions..." id="globalSearch" onkeyup="filterTable(this.value)">
       <?php elseif ($section === 'gateway'): ?>
         <span class="badge normal">Live transaction data</span>
+      <?php elseif ($section === 'routing'): ?>
+        <span class="badge <?= $routing_config['enabled'] ? 'normal' : 'watch' ?>"><?= $routing_config['enabled'] ? 'Smart Routing Active' : 'Routing Standby' ?></span>
       <?php else: ?>
         <span class="badge watch">API v1</span>
       <?php endif; ?>
@@ -706,6 +762,271 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
   <?php endif; ?>
+
+  <?php if ($section === 'routing'): ?>
+    <?php
+      $top_candidate = $gateway_ranking[0] ?? null;
+      $active_strategy = $routing_config['strategy'] ?? 'fastest';
+      $is_active = (bool)($routing_config['enabled'] ?? true);
+      $strategy_titles = [
+        'fastest'         => 'Lowest Latency (Fastest)',
+        'smart_composite' => 'Smart Composite Score',
+        'success_rate'    => 'Highest Success Rate',
+        'waterfall'       => 'Priority Waterfall',
+      ];
+    ?>
+    <section class="routing-hero">
+      <div class="routing-hero-content">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" style="<?= $is_active ? '' : 'background:var(--amber);box-shadow:0 0 12px var(--amber)' ?>"></span>
+            Traffic Orchestration & Zero Downtime
+          </div>
+          <h1 style="font-size:24px;letter-spacing:-.03em">Smart Automatic Gateway Routing</h1>
+          <p style="max-width:620px;margin-top:8px;color:#9da7b1;font-size:12px;line-height:1.65">
+            Dynamically analyzes real-time API latency and conversion rates to route customer checkouts to the fastest healthy gateway. Skips failing providers via automated Circuit Breakers and seamlessly cascades if an order creation times out.
+          </p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+            <span class="badge <?= $is_active ? 'paid' : 'watch' ?>">
+              <span class="status-beacon <?= $is_active ? 'active' : 'off' ?>"></span>
+              <?= $is_active ? 'Auto-Routing Active' : 'Routing Standby (Manual)' ?>
+            </span>
+            <span class="badge razorpay">Strategy: <?= htmlspecialchars($strategy_titles[$active_strategy] ?? ucfirst($active_strategy)) ?></span>
+            <span class="badge normal">Pool: <?= count($routing_config['active_gateways'] ?? []) ?> / <?= count(SmartRouter::ALL_GATEWAYS) ?> Gateways</span>
+            <?php if ($tripped_circuits_count > 0): ?>
+              <span class="badge high">⚠ <?= $tripped_circuits_count ?> Gateway(s) Quarantined</span>
+            <?php else: ?>
+              <span class="badge cashfree">✓ All Circuits Healthy</span>
+            <?php endif; ?>
+          </div>
+        </div>
+
+        <div class="routing-switch-box">
+          <div class="switch-meta">
+            <strong>Automatic Routing</strong>
+            <span id="masterToggleStatusText"><?= $is_active ? 'Optimizing traffic dynamically' : 'Using explicit/manual gateway' ?></span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="masterRoutingToggle" <?= $is_active ? 'checked' : '' ?> onchange="quickToggleAutoRouting(this.checked)">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <div class="routing-layout">
+      <!-- Left Column: Strategy & Pool Controls -->
+      <div>
+        <div class="card card-pad">
+          <div class="card-head">
+            <div>
+              <div class="card-title">1. Routing Algorithm & Strategy</div>
+              <div class="sub">Select how traffic is distributed among available gateways.</div>
+            </div>
+            <span class="badge normal">Algorithm</span>
+          </div>
+
+          <div class="strategy-grid">
+            <label class="strategy-option <?= $active_strategy === 'fastest' ? 'selected' : '' ?>" onclick="selectStrategyOption('fastest', this)">
+              <div class="strategy-head"><span>⚡</span><span>Lowest Latency (Fastest)</span></div>
+              <div class="strategy-desc">Directs each payment to whichever operational gateway currently has the lowest rolling API latency (ms).</div>
+              <span class="strategy-badge">Recommended for Speed</span>
+              <input type="radio" name="routingStrategy" value="fastest" <?= $active_strategy === 'fastest' ? 'checked' : '' ?>>
+            </label>
+
+            <label class="strategy-option <?= $active_strategy === 'smart_composite' ? 'selected' : '' ?>" onclick="selectStrategyOption('smart_composite', this)">
+              <div class="strategy-head"><span>🧠</span><span>Smart Composite Score</span></div>
+              <div class="strategy-desc">Balanced AI score combining 60% historical success rate with 40% latency speed score for balanced reliability.</div>
+              <span class="strategy-badge" style="color:#65e8d5;background:rgba(101,232,213,.12)">AI Balanced</span>
+              <input type="radio" name="routingStrategy" value="smart_composite" <?= $active_strategy === 'smart_composite' ? 'checked' : '' ?>>
+            </label>
+
+            <label class="strategy-option <?= $active_strategy === 'success_rate' ? 'selected' : '' ?>" onclick="selectStrategyOption('success_rate', this)">
+              <div class="strategy-head"><span>🎯</span><span>Highest Success Rate</span></div>
+              <div class="strategy-desc">Favors gateways converting the highest % of resolved transactions. Uses latency as a tiebreaker.</div>
+              <span class="strategy-badge" style="color:#54e58e;background:rgba(84,229,142,.12)">Max Conversion</span>
+              <input type="radio" name="routingStrategy" value="success_rate" <?= $active_strategy === 'success_rate' ? 'checked' : '' ?>>
+            </label>
+
+            <label class="strategy-option <?= $active_strategy === 'waterfall' ? 'selected' : '' ?>" onclick="selectStrategyOption('waterfall', this)">
+              <div class="strategy-head"><span>🌊</span><span>Priority Waterfall</span></div>
+              <div class="strategy-desc">Enforces a strict priority sequence (Razorpay → Cashfree → PayU), bypassing any gateway under circuit trip.</div>
+              <span class="strategy-badge" style="color:#c3a7ff;background:rgba(195,167,255,.12)">Sequential</span>
+              <input type="radio" name="routingStrategy" value="waterfall" <?= $active_strategy === 'waterfall' ? 'checked' : '' ?>>
+            </label>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-top:14px">
+          <div class="card-head">
+            <div>
+              <div class="card-title">2. Gateway Allocation Pool</div>
+              <div class="sub">Enable or temporarily disable gateways from receiving routed traffic.</div>
+            </div>
+            <span class="badge watch">Active gateways</span>
+          </div>
+
+          <div class="pool-grid">
+            <?php foreach (SmartRouter::ALL_GATEWAYS as $gw): ?>
+              <?php $is_checked = in_array($gw, $routing_config['active_gateways'] ?? [], true); ?>
+              <label class="pool-item">
+                <input type="checkbox" class="gateway-pool-check" value="<?= htmlspecialchars($gw) ?>" <?= $is_checked ? 'checked' : '' ?>>
+                <div class="gateway-logo <?= htmlspecialchars($gw) ?>" style="width:28px;height:28px;font-size:11px"><?= strtoupper(substr($gw, 0, 1)) ?></div>
+                <div>
+                  <strong><?= htmlspecialchars(ucfirst($gw)) ?></strong>
+                  <div class="sub"><?= $is_checked ? 'In active pool' : 'Excluded' ?></div>
+                </div>
+              </label>
+            <?php endforeach; ?>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-top:14px">
+          <div class="card-head">
+            <div>
+              <div class="card-title">3. Resilience & Circuit Breaker Protection</div>
+              <div class="sub">Automatically isolates failing gateways to protect checkout conversion.</div>
+            </div>
+            <span class="badge high">Zero-downtime</span>
+          </div>
+
+          <div class="param-grid">
+            <div class="field">
+              <label>Consecutive error trip threshold</label>
+              <input type="number" id="cbFailureThreshold" min="1" max="10" value="<?= (int)($routing_config['circuit_breaker']['failure_threshold'] ?? 3) ?>" placeholder="3">
+              <span class="sub" style="margin-top:4px;display:block">Errors in a row before gateway is quarantined.</span>
+            </div>
+
+            <div class="field">
+              <label>Quarantine cooldown (seconds)</label>
+              <input type="number" id="cbCooldownSeconds" min="10" max="3600" step="10" value="<?= (int)($routing_config['circuit_breaker']['cooldown_seconds'] ?? 300) ?>" placeholder="300">
+              <span class="sub" style="margin-top:4px;display:block">Duration (e.g. 300s = 5m) before probing recovery.</span>
+            </div>
+          </div>
+
+          <div style="display:grid;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid #23282f">
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:11px;color:#dce2e9;cursor:pointer">
+              <input type="checkbox" id="cbAutoCascade" <?= !empty($routing_config['auto_cascade']) ? 'checked' : '' ?> style="margin-top:2px;accent-color:#3be3ef">
+              <div>
+                <strong>Enable Auto-Cascade Failover (Zero-Downtime)</strong>
+                <span class="sub" style="margin-top:2px;display:block">If the primary chosen gateway fails during order creation, automatically cascade to the next best candidate without failing the checkout.</span>
+              </div>
+            </label>
+
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:11px;color:#dce2e9;cursor:pointer">
+              <input type="checkbox" id="cbOverrideExplicit" <?= !empty($routing_config['override_explicit']) ? 'checked' : '' ?> style="margin-top:2px;accent-color:#3be3ef">
+              <div>
+                <strong>Global Override on Specific Gateway Requests</strong>
+                <span class="sub" style="margin-top:2px;display:block">When checked, Smart Router optimizes all initiation requests even if the API caller requested a specific gateway name.</span>
+              </div>
+            </label>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+            <button class="primary-btn" style="height:38px;padding:0 18px;font-size:11px" onclick="saveRoutingSettings()">Save Routing Settings</button>
+            <button class="secondary-btn" style="height:38px;padding:0 14px;font-size:11px" onclick="resetCircuitBreakers()">Reset Circuit Breakers</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Leaderboard & Simulator -->
+      <div>
+        <div class="card card-pad">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Real-Time Gateway Leaderboard</div>
+              <div class="sub">Current ranking based on live traffic & latency.</div>
+            </div>
+            <span class="badge <?= $is_active ? 'paid' : 'watch' ?>"><?= $is_active ? 'Live ranking' : 'Preview' ?></span>
+          </div>
+
+          <div class="leaderboard-list" id="leaderboardContainer">
+            <?php foreach ($gateway_ranking as $idx => $r): ?>
+              <?php
+                $gw = $r['gateway'];
+                $m = $gateway_metrics[$gw] ?? [];
+                $is_tripped = $r['circuit_status'] === 'tripped';
+                $is_degraded = $r['circuit_status'] === 'degraded';
+              ?>
+              <div class="leaderboard-row" style="<?= $is_tripped ? 'border-color:#5b252c;background:#181214' : '' ?>">
+                <div class="leaderboard-top">
+                  <div class="leaderboard-ident">
+                    <span class="rank-num r<?= $idx + 1 ?>">#<?= $idx + 1 ?></span>
+                    <div class="gateway-logo <?= htmlspecialchars($gw) ?>" style="width:28px;height:28px;font-size:11px"><?= strtoupper(substr($gw, 0, 1)) ?></div>
+                    <div>
+                      <strong style="font-size:12px;text-transform:capitalize"><?= htmlspecialchars($gw) ?></strong>
+                      <span class="sub">Score: <?= is_numeric($r['score']) ? number_format((float)$r['score'], 1) : $r['score'] ?></span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <?php if ($is_tripped): ?>
+                      <span class="badge high">Quarantined (<?= $m['cooldown_remaining'] ?? 0 ?>s)</span>
+                    <?php elseif ($is_degraded): ?>
+                      <span class="badge watch">Monitoring</span>
+                    <?php else: ?>
+                      <span class="badge paid">Healthy</span>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="leaderboard-bars">
+                  <div>
+                    <div>Response Speed: <strong style="color:#fff"><?= number_format((float)($r['avg_latency_ms'] ?? 250), 0) ?> ms</strong></div>
+                    <div class="mini-bar-track">
+                      <div class="mini-bar-fill latency" style="width:<?= max(10, min(100, 100 - (($r['avg_latency_ms'] ?? 250) / 10))) ?>%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div>Success Rate: <strong style="color:#fff"><?= $r['success_rate'] !== null ? number_format((float)$r['success_rate'], 1) . '%' : '—' ?></strong></div>
+                    <div class="mini-bar-track">
+                      <div class="mini-bar-fill" style="width:<?= number_format((float)($r['success_rate'] ?? 95), 1, '.', '') ?>%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="leaderboard-reason">
+                  <?= htmlspecialchars($r['reason'] ?? 'Active route candidate') ?>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-top:14px">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Live Route Simulator</div>
+              <div class="sub">Test how the algorithm will route a payment right now.</div>
+            </div>
+            <span class="badge normal">Sandbox</span>
+          </div>
+
+          <div style="display:grid;gap:10px;margin-top:10px">
+            <div class="field">
+              <label>Requested gateway</label>
+              <select id="simGatewaySelect">
+                <option value="auto">auto (Smart Router decides)</option>
+                <option value="razorpay">razorpay</option>
+                <option value="cashfree">cashfree</option>
+                <option value="payu">payu</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Amount (INR)</label>
+              <input type="number" id="simAmount" value="500" placeholder="500">
+            </div>
+
+            <button class="pill-btn primary" style="width:100%;height:36px;justify-content:center" onclick="runRouteSimulation()">Run Route Simulation</button>
+          </div>
+
+          <div id="simOutput" class="sim-output"></div>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
 
   <?php if ($section === 'help'): ?>
     <section class="help-hero">
@@ -1100,7 +1421,28 @@ function viewTxn(txnId) {
     ['Paid At', safe(t.paid_at_display || '-')],
   ];
 
+  if (t.routing) {
+    rows.push(['Smart Routing', t.routing.auto_routed
+      ? `<span class="badge paid">Auto-Routed (${safe(t.routing.strategy || 'fastest')})</span>`
+      : `<span class="badge pending">Direct / Manual</span>`]);
+    if (t.routing.selection_reason) {
+      rows.push(['Routing Reason', safe(t.routing.selection_reason)]);
+    }
+    if (t.gateway_latency_ms) {
+      rows.push(['Gateway Latency', `${Number(t.gateway_latency_ms).toFixed(1)} ms`]);
+    }
+    if (t.routing.failovers && t.routing.failovers.length > 0) {
+      rows.push(['Failover Cascades', `<span class="badge high">${t.routing.failovers.length} Failover(s) Handled</span>`]);
+    }
+  } else if (t.gateway_latency_ms) {
+    rows.push(['Gateway Latency', `${Number(t.gateway_latency_ms).toFixed(1)} ms`]);
+  }
+
   let html = rows.map(([k, v]) => `<div class="detail-row"><div class="detail-key">${k}</div><div class="detail-val">${v}</div></div>`).join('');
+  if (t.routing && t.routing.failovers && t.routing.failovers.length > 0) {
+    html += '<div class="section-title">Zero-Downtime Cascades</div>';
+    html += `<div class="json-block">${safe(JSON.stringify(t.routing.failovers, null, 2))}</div>`;
+  }
   if (t.gateway_response) {
     html += '<div class="section-title">Gateway Response</div>';
     html += `<div class="json-block">${safe(JSON.stringify(t.gateway_response, null, 2))}</div>`;
@@ -1108,6 +1450,158 @@ function viewTxn(txnId) {
 
   document.getElementById('modalBody').innerHTML = html;
   document.getElementById('modal').style.display = 'flex';
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('appToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'appToast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = '<span>✓</span> ' + safe(msg);
+  toast.style.display = 'flex';
+  setTimeout(() => { toast.style.display = 'none'; }, 3200);
+}
+
+function selectStrategyOption(val, el) {
+  document.querySelectorAll('.strategy-option').forEach(card => card.classList.remove('selected'));
+  el.classList.add('selected');
+  const radio = el.querySelector('input[type="radio"]');
+  if (radio) radio.checked = true;
+}
+
+async function quickToggleAutoRouting(enabled) {
+  const statusText = document.getElementById('masterToggleStatusText');
+  if (statusText) {
+    statusText.textContent = enabled ? 'Optimizing traffic dynamically...' : 'Switching to manual...';
+  }
+  try {
+    const res = await fetch('api/routing.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ enabled: enabled })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast(enabled ? 'Smart Auto-Routing ENABLED' : 'Smart Auto-Routing PAUSED');
+      if (statusText) {
+        statusText.textContent = enabled ? 'Optimizing traffic dynamically' : 'Using explicit/manual gateway';
+      }
+      setTimeout(() => location.reload(), 700);
+    } else {
+      alert('Error toggling routing: ' + (data.error || 'Unknown error'));
+    }
+  } catch (err) {
+    alert('Failed to connect to routing API: ' + err.message);
+  }
+}
+
+async function saveRoutingSettings() {
+  const strategyRadio = document.querySelector('input[name="routingStrategy"]:checked');
+  const strategy = strategyRadio ? strategyRadio.value : 'fastest';
+
+  const activeGateways = [];
+  document.querySelectorAll('.gateway-pool-check:checked').forEach(cb => {
+    activeGateways.push(cb.value);
+  });
+
+  if (activeGateways.length === 0) {
+    alert('Please select at least one active gateway in the pool.');
+    return;
+  }
+
+  const threshold = parseInt(document.getElementById('cbFailureThreshold')?.value || '3', 10);
+  const cooldown = parseInt(document.getElementById('cbCooldownSeconds')?.value || '300', 10);
+  const autoCascade = document.getElementById('cbAutoCascade')?.checked ?? true;
+  const overrideExplicit = document.getElementById('cbOverrideExplicit')?.checked ?? false;
+  const masterToggle = document.getElementById('masterRoutingToggle')?.checked ?? true;
+
+  try {
+    const res = await fetch('api/routing.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        enabled: masterToggle,
+        strategy: strategy,
+        active_gateways: activeGateways,
+        override_explicit: overrideExplicit,
+        auto_cascade: autoCascade,
+        circuit_breaker: {
+          enabled: true,
+          failure_threshold: threshold,
+          cooldown_seconds: cooldown
+        }
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Smart Routing configuration saved successfully!');
+      setTimeout(() => location.reload(), 800);
+    } else {
+      alert('Failed to save settings: ' + (data.error || 'Unknown error'));
+    }
+  } catch (err) {
+    alert('Network error saving settings: ' + err.message);
+  }
+}
+
+async function resetCircuitBreakers() {
+  if (!confirm('Are you sure you want to reset all quarantined gateway circuits?')) return;
+  try {
+    const res = await fetch('api/routing.php?action=reset_circuit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({})
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('All circuit breakers have been reset!');
+      setTimeout(() => location.reload(), 700);
+    } else {
+      alert('Failed to reset circuits: ' + (data.error || 'Unknown error'));
+    }
+  } catch (err) {
+    alert('Error resetting circuits: ' + err.message);
+  }
+}
+
+async function runRouteSimulation() {
+  const gw = document.getElementById('simGatewaySelect')?.value || 'auto';
+  const amt = document.getElementById('simAmount')?.value || '500';
+  const out = document.getElementById('simOutput');
+  if (!out) return;
+
+  out.style.display = 'block';
+  out.textContent = 'Simulating Smart Route decision...';
+
+  try {
+    const res = await fetch('api/routing.php?action=simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gateway: gw, amount: amt })
+    });
+    const data = await res.json();
+    if (data.success && data.decision) {
+      const d = data.decision;
+      let text = `=== SMART ROUTING SIMULATION RESULT ===\n`;
+      text += `Status: ${d.auto_routed ? 'AUTOMATICALLY ROUTED' : 'EXPLICIT DIRECT'}\n`;
+      text += `Selected Winner: ${d.primary_gateway.toUpperCase()}\n`;
+      text += `Active Strategy: ${d.strategy}\n`;
+      text += `Selection Reason: ${d.selection_reason}\n`;
+      text += `Failover Cascade Order: ${d.ranked_list.join(' -> ')}\n\n`;
+      text += `--- CANDIDATE SCORING BREAKDOWN ---\n`;
+      (d.ranked_candidates || []).forEach((c, i) => {
+        text += `#${i+1} ${c.gateway.toUpperCase()}: Score ${c.score} | Status: ${c.circuit_status} | Latency: ${c.avg_latency_ms ? c.avg_latency_ms + 'ms' : 'N/A'}\n   Reason: ${c.reason}\n`;
+      });
+      out.textContent = text;
+    } else {
+      out.textContent = 'Simulation failed: ' + (data.error || 'Unknown response');
+    }
+  } catch (err) {
+    out.textContent = 'Simulation request failed: ' + err.message;
+  }
 }
 
 function closeModal(e) {

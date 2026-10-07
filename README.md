@@ -183,7 +183,7 @@ $status = Http::withHeaders([
 | customer_name | string | ✅ | |
 | customer_email | string | ✅ | |
 | customer_phone | string | ✅ | 10-digit mobile |
-| gateway | string | ✅ | `razorpay` or `cashfree` |
+| gateway | string | Optional | `auto` (Smart Routing), `razorpay`, `cashfree`, or `payu`. If omitted and Smart Routing is enabled, routes automatically. |
 | return_url | string | ✅ | Redirect after payment |
 | webhook_url | string | ✅ | Server callback URL |
 | description | string | | Payment description |
@@ -194,11 +194,31 @@ $status = Http::withHeaders([
   "success": true,
   "txn_id": "TXN_ABC123_1704067200",
   "payment_url": "https://pay.yourdomain.com/pay.php?txn=TXN_ABC123_1704067200",
-  "gateway": "razorpay",
+  "gateway": "cashfree",
   "amount": 499.00,
-  "currency": "INR"
+  "currency": "INR",
+  "auto_routed": true,
+  "latency_ms": 134.2
 }
 ```
+
+---
+
+## ⚡ Smart Automatic Gateway Routing
+
+Fintrack includes a built-in Smart Routing Engine that dynamically directs each payment checkout to the fastest, most reliable gateway:
+
+- **Lowest Latency Selection**: Analyzes rolling API round-trip latency (`gateway_latency_ms`) and routes to the fastest healthy gateway.
+- **Circuit Breaker Downtime Isolation**: If a gateway encounters consecutive API errors (default: 3 in a row), the system automatically quarantines it and skips it for a cooldown period (default: 5 minutes) so customer checkouts don't fail.
+- **Zero-Downtime Auto-Cascade**: If an order creation fails on the chosen gateway, the aggregator immediately cascades to the next best operational candidate without failing the checkout request.
+- **Multiple Strategies**:
+  1. `fastest`: Lowest rolling API response time (Recommended).
+  2. `smart_composite`: 60% payment success rate + 40% speed score.
+  3. `success_rate`: Highest payment conversion percentage.
+  4. `waterfall`: Designated priority sequence with auto-failover.
+- **Dashboard Control Center**: Visit `?section=routing` in the dashboard to toggle the master switch, change strategies, enable/disable gateways in the pool, and run live route simulations.
+- **API Control**: Programmatically check or update routing via `/api/routing.php`.
+
 
 ### `GET /api/status.php?txn_id=TXN_XXX`
 **Headers:** `X-Api-Key: <secret>`
