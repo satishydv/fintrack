@@ -1,0 +1,23 @@
+{
+    "enabled": true,
+    "strategy": "fastest",
+    "active_gateways": [
+        "razorpay",
+        "cashfree",
+        "payu"
+    ],
+    "waterfall_priority": [
+        "razorpay",
+        "cashfree",
+        "payu"
+    ],
+    "override_explicit": false,
+    "auto_cascade": true,
+    "fallback_gateway": "razorpay",
+    "circuit_breaker": {
+        "enabled": true,
+        "failure_threshold": 3,
+        "cooldown_seconds": 300
+    },
+    "updated_at": "2026-10-07T15:59:20+05:30"
+}
