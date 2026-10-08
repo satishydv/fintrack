@@ -9,7 +9,7 @@ require_once __DIR__ . '/SmartRouter.php';
 global $config;
 
 $section = $section ?? ($_GET['section'] ?? 'dashboard');
-if (!in_array($section, ['dashboard', 'risk', 'transactions', 'gateway', 'routing', 'reports', 'help'], true)) {
+if (!in_array($section, ['dashboard', 'risk', 'transactions', 'gateway', 'routing', 'reports', 'help', 'components'], true)) {
     $section = 'dashboard';
 }
 
@@ -318,6 +318,7 @@ $section_titles = [
     'routing'      => 'Smart Routing Control Center',
     'reports'      => 'Reports',
     'help'         => 'Help & Integration',
+    'components'   => 'Components',
 ];
 
 $recent_txns = array_slice($txns, 0, 10);

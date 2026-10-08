@@ -3,10 +3,86 @@
 const allTxns = window.allTxns || [];
 
 function filterTable(value) {
-  const q = (value || '').toLowerCase();
+  const tableSearch = document.getElementById('txnSearch')?.value || '';
+  const globalSearch = document.getElementById('globalSearch')?.value || '';
+  const queries = [tableSearch, globalSearch, typeof value === 'string' ? value : '']
+    .map(q => q.trim().toLowerCase()).filter(Boolean);
+  const status = (document.getElementById('txnStatusFilter')?.value || '').toLowerCase();
+  const gateway = (document.getElementById('txnGatewayFilter')?.value || '').toLowerCase();
   document.querySelectorAll('#txnTable tbody tr').forEach(row => {
-    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+    const text = row.textContent.toLowerCase();
+    const rowStatus = row.querySelector('td:nth-child(7) .badge')?.textContent.trim().toLowerCase() || '';
+    const rowGateway = row.querySelector('td:nth-child(5) .badge')?.textContent.trim().toLowerCase() || '';
+    const matchesSearch = queries.every(q => text.includes(q));
+    row.style.display = matchesSearch && (!status || rowStatus === status) && (!gateway || rowGateway === gateway) ? '' : 'none';
   });
+}
+
+function toggleTxnFilters() {
+  const panel = document.getElementById('txnFilters');
+  const button = document.querySelector('.filter-toggle');
+  if (!panel || !button) return;
+  panel.hidden = !panel.hidden;
+  button.setAttribute('aria-expanded', String(!panel.hidden));
+}
+
+function clearTxnFilters() {
+  ['txnSearch', 'txnStatusFilter', 'txnGatewayFilter'].forEach(id => {
+    const field = document.getElementById(id);
+    if (field) field.value = '';
+  });
+  filterTable();
+}
+
+function filterRiskTable() {
+  const query = (document.getElementById('riskSearch')?.value || '').trim().toLowerCase();
+  const level = (document.getElementById('riskLevelFilter')?.value || '').toLowerCase();
+  document.querySelectorAll('#riskTable tbody tr').forEach(row => {
+    const badge = row.cells[1]?.querySelector('.badge');
+    const rowLevel = ['critical', 'high', 'watch', 'normal'].find(name => badge?.classList.contains(name)) || '';
+    row.style.display = row.textContent.toLowerCase().includes(query) && (!level || rowLevel === level) ? '' : 'none';
+  });
+}
+
+function toggleRiskFilters() {
+  const panel = document.getElementById('riskFilters');
+  const button = document.querySelector('.risk-filter-toggle');
+  if (!panel || !button) return;
+  panel.hidden = !panel.hidden;
+  button.setAttribute('aria-expanded', String(!panel.hidden));
+}
+
+function clearRiskFilters() {
+  const search = document.getElementById('riskSearch');
+  const level = document.getElementById('riskLevelFilter');
+  if (search) search.value = '';
+  if (level) level.value = '';
+  filterRiskTable();
+}
+
+function exportVisibleTransactions() {
+  exportVisibleTable('txnTable', 'fintrack-transactions');
+}
+
+function exportVisibleRiskRows() {
+  exportVisibleTable('riskTable', 'fintrack-risk-activity');
+}
+
+function exportVisibleTable(tableId, filename) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  const visibleRows = [...table.querySelectorAll('tbody tr')].filter(row => row.style.display !== 'none');
+  const rows = [[...table.querySelectorAll('thead th')].map(cell => cell.innerText.trim())];
+  visibleRows.forEach(row => rows.push([...row.cells].map(cell => cell.innerText.trim().replace(/\s+/g, ' '))));
+  const csv = rows.map(row => row.map(value => `"${value.replace(/"/g, '""')}"`).join(',')).join('\r\n');
+  const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `${filename}-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  URL.revokeObjectURL(link.href);
+  link.remove();
 }
 
 function reportFilteredTxns() {

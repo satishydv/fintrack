@@ -2,6 +2,8 @@
   $top_candidate = $gateway_ranking[0] ?? null;
   $active_strategy = $routing_config['strategy'] ?? 'fastest';
   $is_active = (bool)($routing_config['enabled'] ?? true);
+  $active_gateway_count = count($routing_config['active_gateways'] ?? []);
+  $all_gateway_count = count(SmartRouter::ALL_GATEWAYS);
   $strategy_titles = [
     'fastest'         => 'Lowest Latency (Fastest)',
     'smart_composite' => 'Smart Composite Score',
@@ -11,28 +13,10 @@
 ?>
 <section class="routing-hero">
   <div class="routing-hero-content">
-    <div>
-      <div class="eyebrow">
-        <span class="eyebrow-dot" style="<?= $is_active ? '' : 'background:var(--amber);box-shadow:0 0 12px var(--amber)' ?>"></span>
-        Traffic Orchestration & Zero Downtime
-      </div>
-      <h1 style="font-size:24px;letter-spacing:-.03em">Smart Automatic Gateway Routing</h1>
-      <p style="max-width:620px;margin-top:8px;color:#9da7b1;font-size:12px;line-height:1.65">
-        Dynamically analyzes real-time API latency and conversion rates to route customer checkouts to the fastest healthy gateway. Skips failing providers via automated Circuit Breakers and seamlessly cascades if an order creation times out.
-      </p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-        <span class="badge <?= $is_active ? 'paid' : 'watch' ?>">
-          <span class="status-beacon <?= $is_active ? 'active' : 'off' ?>"></span>
-          <?= $is_active ? 'Auto-Routing Active' : 'Routing Standby (Manual)' ?>
-        </span>
-        <span class="badge razorpay">Strategy: <?= htmlspecialchars($strategy_titles[$active_strategy] ?? ucfirst($active_strategy)) ?></span>
-        <span class="badge normal">Pool: <?= count($routing_config['active_gateways'] ?? []) ?> / <?= count(SmartRouter::ALL_GATEWAYS) ?> Gateways</span>
-        <?php if ($tripped_circuits_count > 0): ?>
-          <span class="badge high">⚠ <?= $tripped_circuits_count ?> Gateway(s) Quarantined</span>
-        <?php else: ?>
-          <span class="badge cashfree">✓ All Circuits Healthy</span>
-        <?php endif; ?>
-      </div>
+    <div class="routing-intro">
+      <div class="eyebrow"><span class="eyebrow-dot <?= $is_active ? 'active' : 'off' ?>"></span>PAYMENT OPERATIONS <span class="eyebrow-separator">/</span> ROUTING</div>
+      <h1>Smart gateway routing</h1>
+      <p>Choose how payments are assigned and monitor gateway health in real time.</p>
     </div>
 
     <div class="routing-switch-box">
@@ -48,13 +32,20 @@
   </div>
 </section>
 
+<section class="routing-overview" aria-label="Routing overview">
+  <article class="routing-metric"><span class="routing-metric-label">Routing mode</span><strong><i class="routing-state-dot <?= $is_active ? 'on' : 'off' ?>"></i><?= $is_active ? 'Automatic' : 'Manual' ?></strong><small><?= $is_active ? 'Traffic optimization enabled' : 'Using requested gateway' ?></small></article>
+  <article class="routing-metric"><span class="routing-metric-label">Active strategy</span><strong><?= htmlspecialchars($strategy_titles[$active_strategy] ?? ucfirst($active_strategy)) ?></strong><small>Applied to eligible payments</small></article>
+  <article class="routing-metric"><span class="routing-metric-label">Gateway pool</span><strong><?= $active_gateway_count ?><span class="routing-metric-total"> / <?= $all_gateway_count ?></span></strong><small>Gateways available for routing</small></article>
+  <article class="routing-metric"><span class="routing-metric-label">Circuit breakers</span><strong class="<?= $tripped_circuits_count > 0 ? 'text-warning' : 'text-positive' ?>"><?= $tripped_circuits_count > 0 ? $tripped_circuits_count . ' isolated' : 'All healthy' ?></strong><small><?= $tripped_circuits_count > 0 ? 'Gateway recovery in progress' : 'No gateways quarantined' ?></small></article>
+</section>
+
 <div class="routing-layout">
   <!-- Left Column: Strategy & Pool Controls -->
   <div>
     <div class="card card-pad">
       <div class="card-head">
         <div>
-          <div class="card-title">1. Routing Algorithm & Strategy</div>
+          <div class="card-title">Routing strategy</div>
           <div class="sub">Select how traffic is distributed among available gateways.</div>
         </div>
         <span class="badge normal">Algorithm</span>
@@ -62,30 +53,30 @@
 
       <div class="strategy-grid">
         <label class="strategy-option <?= $active_strategy === 'fastest' ? 'selected' : '' ?>" onclick="selectStrategyOption('fastest', this)">
-          <div class="strategy-head"><span>⚡</span><span>Lowest Latency (Fastest)</span></div>
+          <div class="strategy-head"><span class="strategy-index">01</span><span>Lowest latency</span></div>
           <div class="strategy-desc">Directs each payment to whichever operational gateway currently has the lowest rolling API latency (ms).</div>
-          <span class="strategy-badge">Recommended for Speed</span>
+          <span class="strategy-badge">Recommended</span>
           <input type="radio" name="routingStrategy" value="fastest" <?= $active_strategy === 'fastest' ? 'checked' : '' ?>>
         </label>
 
         <label class="strategy-option <?= $active_strategy === 'smart_composite' ? 'selected' : '' ?>" onclick="selectStrategyOption('smart_composite', this)">
-          <div class="strategy-head"><span>🧠</span><span>Smart Composite Score</span></div>
-          <div class="strategy-desc">Balanced AI score combining 60% historical success rate with 40% latency speed score for balanced reliability.</div>
-          <span class="strategy-badge" style="color:#65e8d5;background:rgba(101,232,213,.12)">AI Balanced</span>
+          <div class="strategy-head"><span class="strategy-index">02</span><span>Composite score</span></div>
+          <div class="strategy-desc">Balances historical success rate (60%) with gateway latency (40%).</div>
+          <span class="strategy-badge">Balanced</span>
           <input type="radio" name="routingStrategy" value="smart_composite" <?= $active_strategy === 'smart_composite' ? 'checked' : '' ?>>
         </label>
 
         <label class="strategy-option <?= $active_strategy === 'success_rate' ? 'selected' : '' ?>" onclick="selectStrategyOption('success_rate', this)">
-          <div class="strategy-head"><span>🎯</span><span>Highest Success Rate</span></div>
+          <div class="strategy-head"><span class="strategy-index">03</span><span>Highest success rate</span></div>
           <div class="strategy-desc">Favors gateways converting the highest % of resolved transactions. Uses latency as a tiebreaker.</div>
-          <span class="strategy-badge" style="color:#54e58e;background:rgba(84,229,142,.12)">Max Conversion</span>
+          <span class="strategy-badge">Conversion</span>
           <input type="radio" name="routingStrategy" value="success_rate" <?= $active_strategy === 'success_rate' ? 'checked' : '' ?>>
         </label>
 
         <label class="strategy-option <?= $active_strategy === 'waterfall' ? 'selected' : '' ?>" onclick="selectStrategyOption('waterfall', this)">
-          <div class="strategy-head"><span>🌊</span><span>Priority Waterfall</span></div>
+          <div class="strategy-head"><span class="strategy-index">04</span><span>Priority waterfall</span></div>
           <div class="strategy-desc">Enforces a strict priority sequence (Razorpay → Cashfree → PayU), bypassing any gateway under circuit trip.</div>
-          <span class="strategy-badge" style="color:#c3a7ff;background:rgba(195,167,255,.12)">Sequential</span>
+          <span class="strategy-badge">Sequential</span>
           <input type="radio" name="routingStrategy" value="waterfall" <?= $active_strategy === 'waterfall' ? 'checked' : '' ?>>
         </label>
       </div>
@@ -94,7 +85,7 @@
     <div class="card card-pad" style="margin-top:14px">
       <div class="card-head">
         <div>
-          <div class="card-title">2. Gateway Allocation Pool</div>
+          <div class="card-title">Gateway allocation</div>
           <div class="sub">Enable or temporarily disable gateways from receiving routed traffic.</div>
         </div>
         <span class="badge watch">Active gateways</span>
@@ -118,7 +109,7 @@
     <div class="card card-pad" style="margin-top:14px">
       <div class="card-head">
         <div>
-          <div class="card-title">3. Resilience & Circuit Breaker Protection</div>
+          <div class="card-title">Resilience & circuit breakers</div>
           <div class="sub">Automatically isolates failing gateways to protect checkout conversion.</div>
         </div>
         <span class="badge high">Zero-downtime</span>
@@ -236,7 +227,7 @@
         <span class="badge normal">Sandbox</span>
       </div>
 
-      <div class="display:grid;gap:10px;margin-top:10px" style="display:grid;gap:10px;margin-top:10px">
+      <div class="simulator-form">
         <div class="field">
           <label>Requested gateway</label>
           <select id="simGatewaySelect">

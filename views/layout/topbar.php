@@ -8,6 +8,8 @@
         <span class="badge normal">Live transaction data</span>
       <?php elseif ($section === 'routing'): ?>
         <span class="badge <?= $routing_config['enabled'] ? 'normal' : 'watch' ?>"><?= $routing_config['enabled'] ? 'Smart Routing Active' : 'Routing Standby' ?></span>
+      <?php elseif ($section === 'components'): ?>
+        <span class="badge normal">Reusable UI kit</span>
       <?php else: ?>
         <span class="badge watch">API v1</span>
       <?php endif; ?>

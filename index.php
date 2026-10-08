@@ -12,7 +12,7 @@ if ($_GET['logout'] ?? false) {
 }
 
 $section = $_GET['section'] ?? 'dashboard';
-if (!in_array($section, ['dashboard', 'risk', 'transactions', 'gateway', 'routing', 'reports', 'help'], true)) {
+if (!in_array($section, ['dashboard', 'risk', 'transactions', 'gateway', 'routing', 'reports', 'help', 'components'], true)) {
     $section = 'dashboard';
 }
 

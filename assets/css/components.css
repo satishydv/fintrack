@@ -1,0 +1,114 @@
+/* Standalone component catalog styles. Loaded only on the Components page. */
+.component-library{max-width:1700px;margin:0 auto;color:#e7eaee}
+.component-library-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:3px 0 17px}
+.component-kicker{color:#75818b;font-size:9px;font-weight:700;letter-spacing:.16em}
+.component-library-heading h1{margin-top:6px;font-size:21px;line-height:1.2;font-weight:650;letter-spacing:-.035em}
+.component-library-heading p{margin-top:6px;color:#86919a;font-size:11px}
+.component-count{padding:5px 8px;border:1px solid #30363b;border-radius:5px;background:#171a1d;color:#aab3bb;font-size:9px}
+.component-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:12px}
+.component-preview{min-width:0;padding:10px;border:1px solid #282d32;border-radius:9px;background:linear-gradient(155deg,#15181b,#101214);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.component-preview-label{height:34px;display:flex;align-items:flex-start;gap:8px;color:#d6dce1}
+.component-preview-label>span{width:19px;height:19px;display:grid;place-items:center;border:1px solid #333b42;border-radius:5px;background:#1d2226;color:#99a8b3;font-size:8px;font-weight:700}
+.component-preview-label strong{display:block;font-size:9px;font-weight:600;line-height:1.2}
+.component-preview-label small{display:block;margin-top:3px;color:#747f88;font-size:8px}
+.component-stage{display:flex;justify-content:center;align-items:flex-start;min-height:355px;overflow:hidden;border-radius:6px}
+.stage-wish{padding:8px 0;background:#f5f6f8}
+.stage-error{min-height:588px;padding:0 8px;background:#f5f6f8}
+.stage-receipt{min-height:620px;padding:0;background:radial-gradient(ellipse at 50% 100%,rgba(117,58,195,.28),transparent 45%),#100e17}
+.stage-payment{min-height:620px;padding:0;background:radial-gradient(ellipse at 50% 0,rgba(0,201,204,.19),transparent 34%),#001112}
+
+/* Wish unavailable */
+.wish-card{width:100%;max-width:315px;min-height:328px;padding:30px 14px 16px;display:flex;align-items:center;flex-direction:column;border-radius:10px;background:#fff;text-align:center;color:#201653}
+.wish-icon{width:58px;height:66px;display:grid;place-items:center;margin-bottom:9px}
+.wish-icon svg{width:60px;height:60px;filter:drop-shadow(0 4px 5px rgba(112,76,204,.18))}
+.wish-card h2{font-size:19px;line-height:1.17;font-weight:500;letter-spacing:-.025em}
+.wish-card p{margin-top:22px;color:#82818a;font-size:11px;line-height:1.35}
+.wish-button{width:100%;min-height:48px;margin-top:auto;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:linear-gradient(180deg,#bd66df 0%,#8739bd 53%,#4a218d 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 5px 10px rgba(80,37,126,.19);color:#fff;font:inherit;font-size:12px;font-weight:500;cursor:pointer}
+.wish-button:hover{filter:brightness(1.06)}
+
+/* 404 state */
+.error-card{width:100%;max-width:320px;height:576px;padding:95px 14px 20px;display:flex;align-items:center;flex-direction:column;border-radius:8px;background:#fff;color:#241855;text-align:center}
+.error-code{font-size:107px;line-height:.98;font-weight:800;letter-spacing:-.075em;color:#7968f4;background:linear-gradient(135deg,#655eff 5%,#a898ff 40%,#4b67ec 72%,#9e59f3);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(2px 5px 0 rgba(39,74,202,.32)) drop-shadow(0 9px 7px rgba(83,91,212,.14))}
+.error-card h2{margin-top:40px;font-size:18px;line-height:1.12;font-weight:500;letter-spacing:-.02em}
+.error-card .wish-button{min-height:48px;margin-top:auto}
+
+/* RTL investment receipt */
+.receipt-card{position:relative;width:100%;max-width:320px;min-height:683px;padding:72px 10px 18px;overflow:hidden;border-right:3px solid #6f43a4;background:linear-gradient(180deg,#15121e,#171420 65%,#120f19);color:#f0edf5;text-align:center;font-family:Inter,Arial,sans-serif}
+.receipt-card::after{content:"";position:absolute;right:-35px;bottom:-90px;width:230px;height:190px;border-radius:50%;background:rgba(129,67,207,.25);filter:blur(45px);pointer-events:none}
+.receipt-success-icon{position:relative;width:58px;height:58px;margin:10px auto 8px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#8c19ff,#6400dc);box-shadow:0 0 27px rgba(136,43,255,.3)}
+.receipt-success-icon::after{content:"";position:absolute;z-index:0;right:-12px;top:-5px;width:36px;height:62px;border-radius:13px;background:linear-gradient(150deg,#272631,#16151d);transform:rotate(16deg)}
+.receipt-success-icon span{position:relative;z-index:1;font-size:31px;line-height:1;font-weight:700;color:#fff}
+.receipt-card h2{position:relative;z-index:1;margin:0 0 25px;font-size:14px;font-weight:500;line-height:1.55}
+.receipt-ticket{position:relative;z-index:1;min-height:408px;padding:35px 17px 18px;overflow:hidden;border:1px solid rgba(255,255,255,.025);border-radius:13px;background:#262430;box-shadow:0 12px 30px rgba(0,0,0,.22);text-align:left;direction:ltr}
+.receipt-ticket::before{content:"";position:absolute;z-index:0;top:-1px;left:0;right:0;height:14px;background:radial-gradient(circle at 10px 0,#15121e 8px,transparent 8.5px) 0 0/38px 14px repeat-x;pointer-events:none}
+.receipt-ticket::after{content:"";position:absolute;z-index:0;top:50%;left:-1px;right:-1px;height:16px;transform:translateY(-50%);background:radial-gradient(circle at 8px 8px,#15121e 8px,transparent 8.5px) left center/16px 16px no-repeat,radial-gradient(circle at 8px 8px,#15121e 8px,transparent 8.5px) right center/16px 16px no-repeat;pointer-events:none}
+.receipt-ticket>*{position:relative;z-index:1}
+.receipt-row{min-height:41px;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#d7d4df;font-size:10px}
+.receipt-row strong{max-width:68%;color:#f3f0f6;font-size:10px;font-weight:400;text-align:right}
+.receipt-highlight strong{color:#b14aff}
+.receipt-total{padding-top:3px;border-bottom:1px dashed rgba(255,255,255,.18);font-weight:600}
+.receipt-total strong{font-weight:600}
+.receipt-divider{height:1px;margin:13px 0;border-top:1px dashed rgba(255,255,255,.14)}
+.receipt-allocation{margin:0 0 6px;color:#bab5c3;font-size:10px}
+.receipt-wallet{position:relative;display:inline-flex;align-items:center;justify-content:flex-start;gap:7px;margin-top:52px;color:#f1edf6;font-size:10px;text-decoration:underline;text-underline-offset:3px}
+.receipt-wallet svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* Payment confirmed */
+.payment-card{width:100%;max-width:320px;min-height:620px;padding:15px 12px 14px;display:flex;align-items:stretch;flex-direction:column;background:linear-gradient(180deg,rgba(0,41,44,.33),transparent 43%),#001112;color:#f2f8f8;text-align:center}
+.payment-illustration{height:188px;display:grid;place-items:center;margin-top:0}
+.payment-illustration svg{width:174px;height:174px;filter:drop-shadow(0 8px 18px rgba(0,208,207,.12))}
+.payment-card h2{margin-top:4px;font-size:16px;line-height:1.2;font-weight:650;letter-spacing:-.02em}
+.payment-message{max-width:245px;margin:17px auto 22px;color:#d2dddd;font-size:10px;line-height:1.55}
+.payment-details{text-align:left}
+.payment-details h3{padding-bottom:10px;border-bottom:1px solid rgba(49,224,218,.13);font-size:10px;font-weight:600}
+.payment-details dl{margin:7px 0 0}
+.payment-details dl>div{min-height:29px;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#c1cece;font-size:8px}
+.payment-details dt{color:#a8b7b7}.payment-details dd{max-width:62%;color:#e1ebeb;text-align:right;overflow-wrap:anywhere}
+.payment-details .payment-status-row{padding-bottom:8px;border-bottom:1px solid rgba(49,224,218,.13)}
+.payment-status-row dd{color:#56c9a2}.success-dot{display:inline-grid;width:12px;height:12px;margin-right:3px;place-items:center;border:1px solid #56c9a2;border-radius:50%;font-size:8px}
+.payment-actions{display:grid;gap:8px;margin-top:auto;padding-top:13px}
+.payment-actions button{min-height:42px;border:0;border-radius:999px;font:inherit;font-size:10px;font-weight:600;cursor:pointer}
+.track-button{background:#063033;color:#28d3d5}.track-button:hover{background:#084247}
+.invoice-button{background:linear-gradient(180deg,#14e4e8,#00c7cf);color:#002225;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.invoice-button:hover{filter:brightness(1.06)}
+
+@media(max-width:1300px){.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.component-preview{max-width:none}.component-stage{min-height:0;padding:12px}.stage-error,.stage-receipt,.stage-payment{min-height:0}.wish-card{min-height:328px}.error-card{height:576px}.receipt-card{min-height:683px}.payment-card{min-height:620px}}
+@media(max-width:620px){.component-library-heading{align-items:flex-start}.component-library-heading h1{font-size:18px}.component-grid{grid-template-columns:1fr}.component-preview{width:100%}.component-stage{min-height:0}.stage-wish,.stage-error,.stage-receipt,.stage-payment{padding:10px}.wish-card{min-height:328px}.error-card{height:540px;padding-top:78px}.error-code{font-size:95px}.error-card h2{margin-top:34px}.receipt-card{min-height:683px}.payment-card{min-height:620px}}
+
+/* Profile and preferences menu */
+.stage-account{min-height:523px;padding:6px 3px 8px;background:radial-gradient(ellipse at 76% 5%,rgba(0,120,93,.16),transparent 26%),radial-gradient(ellipse at 90% 76%,rgba(109,79,30,.08),transparent 24%),#030607}
+.component-preview:has(.stage-account){padding:0;border:0;background:transparent;box-shadow:none}
+.component-preview:has(.stage-account) .component-preview-label{padding:10px 10px 0}
+.component-preview:has(.stage-account) .stage-account{border-radius:0}
+.account-menu{width:100%;max-width:288px;color:#f0f3f3;font-family:Inter,Arial,sans-serif}
+.account-profile{height:61px;padding:4px 10px 4px 4px;display:flex;align-items:center;gap:9px;border:1px solid #2a6658;border-radius:999px;background:radial-gradient(ellipse at 86% 50%,rgba(0,204,133,.7),rgba(0,150,106,.2) 34%,transparent 57%),linear-gradient(100deg,#111719,#101719 65%,#052720);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 5px 17px rgba(0,0,0,.28)}
+.account-avatar{width:50px;height:50px;flex:0 0 50px;overflow:hidden;border:2px solid #d6dddd;border-radius:50%;background:#aeb8b7;box-shadow:0 0 0 2px rgba(255,255,255,.12)}
+.account-avatar svg{display:block;width:100%;height:100%}
+.account-identity{min-width:0;display:grid;gap:4px;flex:1;text-align:left}
+.account-identity strong{font-size:12px;line-height:1.1;font-weight:500;white-space:nowrap}
+.account-identity span{color:#c1caca;font-size:9px;white-space:nowrap}
+.account-edit{width:25px;height:25px;display:grid;place-items:center;flex:0 0 25px;border:0;background:transparent;color:#dbfff1;cursor:pointer}
+.account-edit svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.account-menu-list{display:grid;gap:14px;margin-top:17px}
+.account-menu-item{position:relative;width:100%;height:40px;padding:3px 9px 3px 3px;display:flex;align-items:center;gap:8px;border:1px solid rgba(129,153,151,.42);border-radius:999px;background:linear-gradient(100deg,rgba(20,25,27,.96),rgba(10,13,14,.97) 75%,rgba(12,17,17,.95));box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 3px 9px rgba(0,0,0,.25);color:#edf0f0;text-align:left;font:inherit;font-size:10px;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .15s ease}
+.account-menu-item:hover{transform:translateY(-1px);border-color:rgba(92,202,179,.7);background:linear-gradient(100deg,#182121,#101415)}
+.account-menu-icon{width:34px;height:34px;display:grid;place-items:center;flex:0 0 34px;border:1px solid #63716f;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.045);color:#b8c3c1}
+.account-menu-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
+.account-menu-item>span:nth-child(2){min-width:0;flex:1;font-size:10px;white-space:nowrap}
+.account-chevron{width:14px;height:14px;flex:0 0 14px;fill:none;stroke:#d1d8d7;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.account-dark-row{cursor:default}.account-dark-row:hover{transform:none}
+.account-switch{position:relative;width:41px;height:22px;flex:0 0 41px;display:block}
+.account-switch input{position:absolute;width:1px;height:1px;opacity:0}
+.account-switch i{position:absolute;inset:0;border:1px solid #485351;border-radius:999px;background:#303738;transition:background .18s,border-color .18s}
+.account-switch i::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#d1d9d7;box-shadow:0 1px 3px rgba(0,0,0,.45);transition:transform .18s,background .18s}
+.account-switch input:checked+i{border-color:#1c6b55;background:#194b3c}
+.account-switch input:checked+i::after{transform:translateX(19px);background:#08d18e;box-shadow:0 0 9px rgba(0,209,142,.38)}
+.account-switch input:focus-visible+i{outline:2px solid #8cebd0;outline-offset:2px}
+.account-menu:has(.account-switch input:not(:checked)) .account-profile{background:linear-gradient(100deg,#f6f8f8,#e9f0ee);border-color:#a6c5bc;color:#263331}
+.account-menu:has(.account-switch input:not(:checked)) .account-identity span{color:#61706d}
+.account-menu:has(.account-switch input:not(:checked)) .account-edit{color:#287960}
+.account-menu:has(.account-switch input:not(:checked)) .account-menu-item{background:linear-gradient(100deg,#fff,#f1f5f4);border-color:#b2c5c1;color:#2a3534}
+.account-menu:has(.account-switch input:not(:checked)) .account-menu-icon{border-color:#809590;color:#526965}
+.account-menu:has(.account-switch input:not(:checked)) .account-chevron{stroke:#677875}
+@media(max-width:1300px){.stage-account{min-height:523px}}
+@media(max-width:620px){.stage-account{padding:8px;min-height:523px}.account-menu{max-width:288px}}
