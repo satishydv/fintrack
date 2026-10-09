@@ -10,6 +10,28 @@
     'success_rate'    => 'Highest Success Rate',
     'waterfall'       => 'Priority Waterfall',
   ];
+  $chart_days = [];
+  $chart_cursor = new DateTimeImmutable(date('Y-m-d', $latest_txn_timestamp ?: time()));
+  while (count($chart_days) < 5) {
+    $weekday = (int)$chart_cursor->format('N');
+    if ($weekday <= 5) {
+      $day_key = $chart_cursor->format('Y-m-d');
+      $chart_days[$day_key] = ['label' => $chart_cursor->format('D'), 'paid' => 0, 'other' => 0];
+    }
+    $chart_cursor = $chart_cursor->modify('-1 day');
+  }
+  foreach (($txns ?? []) as $txn) {
+    $day_key = date('Y-m-d', strtotime((string)($txn['created_at'] ?? 'now')));
+    if (!isset($chart_days[$day_key])) continue;
+    if (strtolower((string)($txn['status'] ?? 'pending')) === 'paid') $chart_days[$day_key]['paid']++;
+    else $chart_days[$day_key]['other']++;
+  }
+  $chart_days = array_reverse($chart_days, true);
+  $chart_max = max(1, ...array_values(array_map(fn($day) => max($day['paid'], $day['other']), $chart_days)));
+  $chart_paid_total = array_sum(array_column($chart_days, 'paid'));
+  $chart_other_total = array_sum(array_column($chart_days, 'other'));
+  $leader_success = $top_candidate['success_rate'] ?? null;
+  $leader_latency = $top_candidate['avg_latency_ms'] ?? null;
 ?>
 <section class="routing-hero">
   <div class="routing-hero-content">
@@ -33,10 +55,26 @@
 </section>
 
 <section class="routing-overview" aria-label="Routing overview">
-  <article class="routing-metric"><span class="routing-metric-label">Routing mode</span><strong><i class="routing-state-dot <?= $is_active ? 'on' : 'off' ?>"></i><?= $is_active ? 'Automatic' : 'Manual' ?></strong><small><?= $is_active ? 'Traffic optimization enabled' : 'Using requested gateway' ?></small></article>
-  <article class="routing-metric"><span class="routing-metric-label">Active strategy</span><strong><?= htmlspecialchars($strategy_titles[$active_strategy] ?? ucfirst($active_strategy)) ?></strong><small>Applied to eligible payments</small></article>
-  <article class="routing-metric"><span class="routing-metric-label">Gateway pool</span><strong><?= $active_gateway_count ?><span class="routing-metric-total"> / <?= $all_gateway_count ?></span></strong><small>Gateways available for routing</small></article>
-  <article class="routing-metric"><span class="routing-metric-label">Circuit breakers</span><strong class="<?= $tripped_circuits_count > 0 ? 'text-warning' : 'text-positive' ?>"><?= $tripped_circuits_count > 0 ? $tripped_circuits_count . ' isolated' : 'All healthy' ?></strong><small><?= $tripped_circuits_count > 0 ? 'Gateway recovery in progress' : 'No gateways quarantined' ?></small></article>
+  <article class="routing-metric">
+    <div class="routing-metric-head"><span class="routing-metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 17 9 12l3 3 7-8"/><path d="M14 7h5v5"/></svg></span><span class="routing-metric-label">Routing mode</span></div>
+    <strong><i class="routing-state-dot <?= $is_active ? 'on' : 'off' ?>"></i><?= $is_active ? 'Automatic' : 'Manual' ?></strong>
+    <small><?= $is_active ? 'Traffic optimization enabled' : 'Using requested gateway' ?></small>
+  </article>
+  <article class="routing-metric">
+    <div class="routing-metric-head"><span class="routing-metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h9M5 17h5"/><path d="m16 15 2 2 3-4"/></svg></span><span class="routing-metric-label">Active strategy</span></div>
+    <strong><?= htmlspecialchars($strategy_titles[$active_strategy] ?? ucfirst($active_strategy)) ?></strong>
+    <small>Applied to eligible payments</small>
+  </article>
+  <article class="routing-metric">
+    <div class="routing-metric-head"><span class="routing-metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span><span class="routing-metric-label">Gateway pool</span></div>
+    <strong><?= $active_gateway_count ?><span class="routing-metric-total"> / <?= $all_gateway_count ?></span></strong>
+    <small>Gateways available for routing</small>
+  </article>
+  <article class="routing-metric">
+    <div class="routing-metric-head"><span class="routing-metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.5-2.8 7.8-7 10-4.2-2.2-7-5.5-7-10V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="routing-metric-label">Circuit breakers</span></div>
+    <strong class="<?= $tripped_circuits_count > 0 ? 'text-warning' : 'text-positive' ?>"><?= $tripped_circuits_count > 0 ? $tripped_circuits_count . ' isolated' : 'All healthy' ?></strong>
+    <small><?= $tripped_circuits_count > 0 ? 'Gateway recovery in progress' : 'No gateways quarantined' ?></small>
+  </article>
 </section>
 
 <div class="routing-layout">
@@ -157,64 +195,32 @@
   <!-- Right Column: Live Leaderboard & Simulator -->
   <div>
     <div class="card card-pad">
-      <div class="card-head">
-        <div>
-          <div class="card-title">Real-Time Gateway Leaderboard</div>
-          <div class="sub">Current ranking based on live traffic & latency.</div>
-        </div>
-        <span class="badge <?= $is_active ? 'paid' : 'watch' ?>"><?= $is_active ? 'Live ranking' : 'Preview' ?></span>
+      <div class="routing-chart-head">
+        <div class="routing-chart-title"><span aria-hidden="true">⠿</span><div><div class="card-title">Gateway Activity</div><div class="sub">Recorded payment outcomes by weekday</div></div></div>
+        <span class="routing-chart-period">Weekdays <span aria-hidden="true">⌄</span></span>
       </div>
-
-      <div class="leaderboard-list" id="leaderboardContainer">
-        <?php foreach ($gateway_ranking as $idx => $r): ?>
-          <?php
-            $gw = $r['gateway'];
-            $m = $gateway_metrics[$gw] ?? [];
-            $is_tripped = $r['circuit_status'] === 'tripped';
-            $is_degraded = $r['circuit_status'] === 'degraded';
-          ?>
-          <div class="leaderboard-row" style="<?= $is_tripped ? 'border-color:#5b252c;background:#181214' : '' ?>">
-            <div class="leaderboard-top">
-              <div class="leaderboard-ident">
-                <span class="rank-num r<?= $idx + 1 ?>">#<?= $idx + 1 ?></span>
-                <div class="gateway-logo <?= htmlspecialchars($gw) ?>" style="width:28px;height:28px;font-size:11px"><?= strtoupper(substr($gw, 0, 1)) ?></div>
-                <div>
-                  <strong style="font-size:12px;text-transform:capitalize"><?= htmlspecialchars($gw) ?></strong>
-                  <span class="sub">Score: <?= is_numeric($r['score']) ? number_format((float)$r['score'], 1) : $r['score'] ?></span>
-                </div>
+      <div class="routing-chart" role="img" aria-label="Grouped bar chart of paid and pending or failed transactions for the last five weekdays">
+        <div class="routing-chart-guide"></div>
+        <div class="routing-chart-groups">
+          <?php foreach ($chart_days as $day): ?>
+            <?php
+              $paid_height = $day['paid'] ? max(9, ($day['paid'] / $chart_max) * 100) : 3;
+              $other_height = $day['other'] ? max(9, ($day['other'] / $chart_max) * 100) : 3;
+            ?>
+            <div class="routing-chart-group" title="<?= htmlspecialchars($day['label']) ?>: <?= (int)$day['paid'] ?> paid, <?= (int)$day['other'] ?> pending or failed">
+              <div class="routing-chart-pair">
+                <i class="paid" style="height:<?= number_format($paid_height, 1, '.', '') ?>%"></i>
+                <i class="other" style="height:<?= number_format($other_height, 1, '.', '') ?>%"></i>
               </div>
-
-              <div>
-                <?php if ($is_tripped): ?>
-                  <span class="badge high">Quarantined (<?= $m['cooldown_remaining'] ?? 0 ?>s)</span>
-                <?php elseif ($is_degraded): ?>
-                  <span class="badge watch">Monitoring</span>
-                <?php else: ?>
-                  <span class="badge paid">Healthy</span>
-                <?php endif; ?>
-              </div>
+              <span><?= htmlspecialchars($day['label']) ?></span>
             </div>
-
-            <div class="leaderboard-bars">
-              <div>
-                <div>Response Speed: <strong style="color:#fff"><?= number_format((float)($r['avg_latency_ms'] ?? 250), 0) ?> ms</strong></div>
-                <div class="mini-bar-track">
-                  <div class="mini-bar-fill latency" style="width:<?= max(10, min(100, 100 - (($r['avg_latency_ms'] ?? 250) / 10))) ?>%"></div>
-                </div>
-              </div>
-              <div>
-                <div>Success Rate: <strong style="color:#fff"><?= $r['success_rate'] !== null ? number_format((float)$r['success_rate'], 1) . '%' : '—' ?></strong></div>
-                <div class="mini-bar-track">
-                  <div class="mini-bar-fill" style="width:<?= number_format((float)($r['success_rate'] ?? 95), 1, '.', '') ?>%"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="leaderboard-reason">
-              <?= htmlspecialchars($r['reason'] ?? 'Active route candidate') ?>
-            </div>
-          </div>
-        <?php endforeach; ?>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <div class="routing-chart-legend"><span><i class="paid"></i>Paid</span><span><i class="other"></i>Pending / failed</span></div>
+      <div class="routing-chart-insight">
+        <span class="routing-chart-insight-icon" aria-hidden="true">✳</span>
+        <p><?php if ($top_candidate): ?><strong><?= htmlspecialchars(ucfirst((string)$top_candidate['gateway'])) ?></strong> leads the live ranking<?php if ($leader_success !== null): ?> with a <?= number_format((float)$leader_success, 1) ?>% success rate<?php endif; ?><?php if ($leader_latency !== null): ?> at <?= number_format((float)$leader_latency, 0) ?> ms average latency<?php endif; ?>.<?php else: ?>No gateway activity has been recorded for this period yet.<?php endif; ?> <span><?= number_format($chart_paid_total) ?> paid · <?= number_format($chart_other_total) ?> pending or failed</span></p>
       </div>
     </div>
 

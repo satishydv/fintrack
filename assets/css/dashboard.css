@@ -229,12 +229,16 @@ input:checked + .toggle-slider:before{transform:translateX(24px);background:#071
 .toggle-switch{width:42px;height:24px}.toggle-slider{background:#282d30;border-color:#3a4144}.toggle-slider:before{width:16px;height:16px;left:3px;bottom:3px;background:#b6bfc1}
 input:checked + .toggle-slider{background:#23685f;border-color:#368b80;box-shadow:0 0 10px rgba(53,139,128,.18)}input:checked + .toggle-slider:before{transform:translateX(18px);background:#effffc}
 .routing-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:13px}
-.routing-metric{min-width:0;min-height:82px;padding:11px 13px;border:1px solid #282d30;border-radius:8px;background:linear-gradient(145deg,#181a1c,#131517);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
-.routing-metric-label{display:block;color:#8d969a;font-size:8px;text-transform:uppercase;letter-spacing:.08em}
-.routing-metric strong{display:flex;align-items:center;gap:7px;margin-top:8px;color:#e8ebec;font-size:14px;font-weight:600;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.routing-metric small{display:block;margin-top:5px;color:#777f83;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.routing-metric{position:relative;isolation:isolate;overflow:hidden;min-width:0;min-height:100px;padding:12px 14px;border:1px solid #292d31;border-radius:11px;background:linear-gradient(145deg,#141619,#101214);box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 5px 14px rgba(0,0,0,.14)}
+.routing-metric::after{content:"";position:absolute;z-index:-1;right:0;bottom:0;width:48%;height:70%;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:13px 13px;mask-image:linear-gradient(135deg,transparent 4%,#000 100%);pointer-events:none}
+.routing-metric-head{display:flex;align-items:center;gap:9px;min-width:0}
+.routing-metric-icon{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border:1px solid #42464a;border-radius:9px;background:linear-gradient(145deg,#1c1f22,#121416);color:#d1d5d7;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.routing-metric-icon svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.routing-metric-label{display:block;min-width:0;color:#d0d3d5;font-size:10px;font-weight:500;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.routing-metric strong{position:relative;z-index:1;display:flex;align-items:center;gap:7px;margin-top:9px;color:#f0f1f2;font-size:21px;line-height:1.12;font-weight:650;letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.routing-metric small{position:relative;z-index:1;display:block;margin-top:5px;color:#777f83;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .routing-metric-total{color:#80898c;font-size:11px;font-weight:500}
-.routing-state-dot{width:6px;height:6px;border-radius:50%;background:#58c6a0;box-shadow:0 0 7px rgba(88,198,160,.45)}
+.routing-state-dot{width:7px;height:7px;border-radius:50%;background:#58c6a0;box-shadow:0 0 7px rgba(88,198,160,.45)}
 .routing-state-dot.off{background:#d3aa4f;box-shadow:0 0 7px rgba(211,170,79,.3)}
 .routing-metric .text-positive{color:#7bd3ae}.routing-metric .text-warning{color:#e2bd66}
 .routing-layout{grid-template-columns:minmax(0,1.27fr) minmax(340px,.85fr);gap:12px;align-items:start}
@@ -287,11 +291,34 @@ input:checked + .toggle-slider{background:#23685f;border-color:#368b80;box-shado
 .routing-layout .mini-bar-fill{background:linear-gradient(90deg,#42b9a7,#76d7bd)}
 .routing-layout .mini-bar-fill.latency{background:linear-gradient(90deg,#56a6d7,#7eadef)}
 .routing-layout .leaderboard-reason{padding:7px 8px;border-color:#2a3032;border-radius:5px;background:#101214;color:#939c9f;font-size:8px}
+.routing-layout .routing-chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin:1px 0 15px}
+.routing-layout .routing-chart-title{display:flex;align-items:center;gap:9px;min-width:0}
+.routing-layout .routing-chart-title>span{width:24px;height:24px;display:grid;place-items:center;border:1px solid #3c3d41;border-radius:7px;color:#d9d7e0;font-size:14px}
+.routing-layout .routing-chart-title .card-title{font-size:12px}
+.routing-layout .routing-chart-title .sub{margin-top:4px}
+.routing-layout .routing-chart-period{display:flex;align-items:center;gap:9px;padding:6px 9px;border:1px solid #38393e;border-radius:7px;background:#191a1d;color:#d0cfd4;font-size:9px;white-space:nowrap}
+.routing-layout .routing-chart{height:145px;position:relative;padding:0 5px 23px;border-bottom:1px solid #303035}
+.routing-layout .routing-chart-guide{position:absolute;left:0;right:0;top:37%;border-top:1px dashed #aaa6af;opacity:.72}
+.routing-layout .routing-chart-groups{position:relative;z-index:1;height:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(5px,1.2vw,16px)}
+.routing-layout .routing-chart-group{height:100%;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:7px;color:#b8b7bc;font-size:9px}
+.routing-layout .routing-chart-pair{height:calc(100% - 18px);width:100%;display:flex;align-items:flex-end;justify-content:center;gap:4px}
+.routing-layout .routing-chart-pair i{display:block;width:min(24px,39%);min-height:3px;border-radius:7px 7px 4px 4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 3px 8px rgba(0,0,0,.18)}
+.routing-layout .routing-chart-pair i.paid{background:linear-gradient(180deg,#c3a7ff 0 47%,#a17cf7 48% 100%)}
+.routing-layout .routing-chart-pair i.other{background:linear-gradient(180deg,#ff9479 0 48%,#fa5238 49% 100%)}
+.routing-layout .routing-chart-legend{display:flex;align-items:center;justify-content:center;gap:17px;padding:10px 0 11px;color:#a4a2a9;font-size:8px}
+.routing-layout .routing-chart-legend span{display:flex;align-items:center;gap:6px}
+.routing-layout .routing-chart-legend i{width:9px;height:9px;border-radius:3px;background:#a17cf7}
+.routing-layout .routing-chart-legend i.other{background:#fa6347}
+.routing-layout .routing-chart-insight{display:flex;align-items:center;gap:9px;padding:9px 10px;border:1px solid #302e38;border-radius:7px;background:linear-gradient(110deg,#211d2a,#18171d 72%);color:#bcb8c7}
+.routing-layout .routing-chart-insight-icon{width:20px;height:20px;flex:0 0 20px;display:grid;place-items:center;border:1px solid #625974;border-radius:50%;color:#c8b3ff;font-size:11px}
+.routing-layout .routing-chart-insight p{font-size:8px;line-height:1.5}
+.routing-layout .routing-chart-insight strong{color:#e6def7;font-weight:600}
+.routing-layout .routing-chart-insight p span{display:block;margin-top:2px;color:#908a9b}
 .routing-layout .simulator-form{display:grid;gap:9px;margin-top:2px}
 .routing-layout .simulator-form .pill-btn{height:33px!important;border-radius:6px;font-size:9px!important}
 .routing-layout .sim-output{margin-top:10px;padding:10px;border-color:#2d3536;border-radius:6px;background:#0f1213;color:#bfcacb;font-size:9px}
 @media(max-width:1120px){.routing-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.routing-layout{grid-template-columns:1fr}}
-@media(max-width:540px){.routing-hero{padding:14px}.routing-hero-content{align-items:stretch;flex-direction:column;gap:12px}.routing-switch-box{min-width:0}.routing-overview{gap:7px}.routing-metric{padding:10px;min-height:78px}.routing-layout .strategy-grid{grid-template-columns:1fr}.routing-layout .pool-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.routing-hero{padding:14px}.routing-hero-content{align-items:stretch;flex-direction:column;gap:12px}.routing-switch-box{min-width:0}.routing-overview{gap:7px}.routing-metric{padding:10px;min-height:78px}.routing-layout .strategy-grid{grid-template-columns:1fr}.routing-layout .pool-grid{grid-template-columns:1fr}.routing-layout .routing-chart{height:132px}.routing-layout .routing-chart-pair{gap:3px}.routing-layout .routing-chart-pair i{width:min(21px,42%)}}
 @media(max-width:760px){.risk-layout>.card:first-child .table-header{height:auto;min-height:52px}.risk-layout .table-tools{flex-wrap:nowrap}.risk-layout .table-tools .search{width:auto;flex:1}}
 /* Fine highlights and denser transaction-feed details. */
 .ops-kpi,.ops-chart-panel,.ops-dashboard>.table-card,.ops-summary-card{position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.065),0 5px 14px rgba(0,0,0,.16)}
