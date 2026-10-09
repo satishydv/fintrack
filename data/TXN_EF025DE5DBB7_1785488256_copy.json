@@ -1,0 +1,101 @@
+{
+    "txn_id": "TXN_EF025DE5DBB7_1785488256",
+    "order_id": "ORD_576_1785488256",
+    "amount": 10000,
+    "currency": "INR",
+    "customer_name": "Subhash",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8769783729",
+    "gateway": "cashfree",
+    "description": "Wallet Top-up for Subhash",
+    "return_url": "https:\/\/vara-567.com\/cashfree\/verify",
+    "webhook_url": "https:\/\/vara-567.com\/auto-pay\/cashfree\/webhook",
+    "status": "chargeback",
+    "gateway_order_id": "TXN_EF025DE5DBB7_1785488256",
+    "gateway_txn_id": "6131532127",
+    "gateway_response": {
+        "data": {
+            "dispute": {
+                "dispute_id": "583747",
+                "dispute_type": "CHARGEBACK",
+                "reason_code": "1064",
+                "reason_description": "Goods or Services Not Provided \/ Not Received",
+                "dispute_amount": 10000,
+                "created_at": "2026-08-17T23:18:46+05:30",
+                "updated_at": "2026-08-26T16:38:50+05:30",
+                "respond_by": "2026-08-20T00:00:00+05:30",
+                "dispute_status": "CHARGEBACK_UNDER_REVIEW",
+                "cf_dispute_remarks": "Thank you for the update. We are going ahead and will be representing the same with the bank and we would let you know if we need any further clarifications.",
+                "dispute_update": "STATUS_UPDATE",
+                "dispute_action_on": "CASHFREE"
+            },
+            "order_details": {
+                "order_id": "TXN_EF025DE5DBB7_1785488256",
+                "order_amount": 10000,
+                "order_currency": "INR",
+                "cf_payment_id": 6131532127,
+                "payment_amount": 10000,
+                "payment_currency": "INR"
+            },
+            "customer_details": {
+                "customer_name": "Subhash",
+                "customer_phone": "8769783729",
+                "customer_email": "customer@default.com"
+            }
+        },
+        "event_time": "2026-08-26T16:38:50+05:30",
+        "type": "DISPUTE_UPDATED"
+    },
+    "ip_address": "223.184.250.146",
+    "request_ip": "148.113.43.3",
+    "user_agent": "GuzzleHttp\/7",
+    "created_at": "2026-07-31T14:27:36+05:30",
+    "updated_at": "2026-08-26T16:38:50+05:30",
+    "paid_at": "2026-07-31T14:28:01+05:30",
+    "cf_payment_session_id": "session_Zlc7NeB_VmwAidWkJKwcQgqaPIajYSXJskoTyv5rt9qlugmlvOxZXoJFU69Z4QZrPtM44uEvZCA6SnnqRdBsiWG1Wy_1ZUWWvG2DrvjLvW4-KGimXAi2rjgLG5qO",
+    "cf_payment_link": null,
+    "gateway_order_raw": {
+        "cart_details": null,
+        "cf_order_id": "6542588260",
+        "created_at": "2026-07-31T14:27:37+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "Subhash",
+            "customer_email": "customer@default.com",
+            "customer_phone": "8769783729",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 10000,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-08-30T14:27:37+05:30",
+        "order_id": "TXN_EF025DE5DBB7_1785488256",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_EF025DE5DBB7_1785488256&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for Subhash",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_Zlc7NeB_VmwAidWkJKwcQgqaPIajYSXJskoTyv5rt9qlugmlvOxZXoJFU69Z4QZrPtM44uEvZCA6SnnqRdBsiWG1Wy_1ZUWWvG2DrvjLvW4-KGimXAi2rjgLG5qO",
+        "terminal_data": null
+    },
+    "payment_page_ip": "223.184.250.146",
+    "payment_page_seen_at": "2026-07-31T14:27:36+05:30",
+    "initiation_ip_address": "148.113.43.3",
+    "notify_error": null,
+    "notified_at": "2026-07-31T14:28:01+05:30",
+    "risk_details": {
+        "provider": "cashfree",
+        "type": "chargeback",
+        "event": "DISPUTE_UPDATED",
+        "id": "583747",
+        "status": "CHARGEBACK_UNDER_REVIEW",
+        "amount": 10000,
+        "currency": "INR",
+        "reason": "Goods or Services Not Provided \/ Not Received",
+        "respond_by": "2026-08-20T00:00:00+05:30"
+    }
+}

@@ -1,0 +1,100 @@
+{
+    "txn_id": "TXN_000A1C9828D5_1785341232",
+    "order_id": "ORD_408_1785341232",
+    "amount": 1000,
+    "currency": "INR",
+    "customer_name": "Vallepuanil",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9676239563",
+    "gateway": "cashfree",
+    "description": "Wallet Top-up for Vallepuanil",
+    "return_url": "https:\/\/vara-567.com\/cashfree\/verify",
+    "webhook_url": "https:\/\/vara-567.com\/auto-pay\/cashfree\/webhook",
+    "status": "chargeback",
+    "gateway_order_id": "TXN_000A1C9828D5_1785341232",
+    "gateway_txn_id": "6116101069",
+    "gateway_response": {
+        "data": {
+            "dispute": {
+                "dispute_id": "569154",
+                "dispute_type": "CHARGEBACK",
+                "reason_code": "1064",
+                "reason_description": "Goods or Services Not Provided \/ Not Received",
+                "dispute_amount": 1000,
+                "created_at": "2026-07-31T09:19:15+05:30",
+                "updated_at": "2026-09-10T14:00:28+05:30",
+                "respond_by": "2026-08-04T00:00:00+05:30",
+                "resolved_at": "2026-09-10T14:00:28.287216549+05:30",
+                "dispute_status": "CHARGEBACK_MERCHANT_WON",
+                "cf_dispute_remarks": "Merchant favour"
+            },
+            "order_details": {
+                "order_id": "TXN_000A1C9828D5_1785341232",
+                "order_amount": 1000,
+                "order_currency": "INR",
+                "cf_payment_id": 6116101069,
+                "payment_amount": 1000,
+                "payment_currency": "INR"
+            },
+            "customer_details": {
+                "customer_name": "Vallepuanil",
+                "customer_phone": "9676239563",
+                "customer_email": "customer@default.com"
+            }
+        },
+        "event_time": "2026-09-10T14:00:28+05:30",
+        "type": "DISPUTE_CLOSED"
+    },
+    "ip_address": "115.99.151.128",
+    "request_ip": "148.113.43.3",
+    "user_agent": "GuzzleHttp\/7",
+    "created_at": "2026-07-29T21:37:12+05:30",
+    "updated_at": "2026-09-10T14:00:28+05:30",
+    "paid_at": "2026-07-29T21:37:32+05:30",
+    "cf_payment_session_id": "session_B4hLphYTo-kPmGVMUz2voAO-euxX2h8ygjZjPy_4uIe9ztoDN-B9K8eWgko0csc0mQf_yY_lAQdmbTYenOfxfwFpWowbfpNtvX0mfwE2lrvDxfvwM0s1XLfi29C9",
+    "cf_payment_link": null,
+    "gateway_order_raw": {
+        "cart_details": null,
+        "cf_order_id": "6526661604",
+        "created_at": "2026-07-29T21:37:13+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "Vallepuanil",
+            "customer_email": "customer@default.com",
+            "customer_phone": "9676239563",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 1000,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-08-28T21:37:13+05:30",
+        "order_id": "TXN_000A1C9828D5_1785341232",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_000A1C9828D5_1785341232&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for Vallepuanil",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_B4hLphYTo-kPmGVMUz2voAO-euxX2h8ygjZjPy_4uIe9ztoDN-B9K8eWgko0csc0mQf_yY_lAQdmbTYenOfxfwFpWowbfpNtvX0mfwE2lrvDxfvwM0s1XLfi29C9",
+        "terminal_data": null
+    },
+    "payment_page_ip": "115.99.151.128",
+    "payment_page_seen_at": "2026-07-29T21:37:13+05:30",
+    "initiation_ip_address": "148.113.43.3",
+    "notify_error": null,
+    "notified_at": "2026-07-29T21:37:33+05:30",
+    "risk_details": {
+        "provider": "cashfree",
+        "type": "chargeback",
+        "event": "DISPUTE_CLOSED",
+        "id": "569154",
+        "status": "CHARGEBACK_MERCHANT_WON",
+        "amount": 1000,
+        "currency": "INR",
+        "reason": "Goods or Services Not Provided \/ Not Received",
+        "respond_by": "2026-08-04T00:00:00+05:30"
+    }
+}

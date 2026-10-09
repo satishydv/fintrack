@@ -1,6 +1,16 @@
 <aside class="sidebar">
   <div class="brand">
     <div class="brand-mark">F</div>
+    <div class="mobile-account">
+      <button class="mobile-account-trigger" type="button" aria-expanded="false" aria-controls="mobile-account-menu" aria-label="Open account menu">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/145413998?v=4" alt="">
+        <span>Satish Yadav</span>
+      </button>
+      <div class="mobile-account-menu" id="mobile-account-menu" hidden>
+        <a href="?section=routing">Settings</a>
+        <a href="?logout=1">Logout</a>
+      </div>
+    </div>
     <div class="brand-name">Fintrack</div>
   </div>
   <div class="profile">
@@ -30,3 +40,29 @@
     </section>
   </div>
 </aside>
+<script>
+(() => {
+  const account = document.querySelector('.mobile-account');
+  const trigger = account?.querySelector('.mobile-account-trigger');
+  const menu = account?.querySelector('.mobile-account-menu');
+  if (!trigger || !menu) return;
+  trigger.addEventListener('click', () => {
+    const open = trigger.getAttribute('aria-expanded') !== 'true';
+    trigger.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+  });
+  document.addEventListener('click', event => {
+    if (!account.contains(event.target)) {
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+      trigger.focus();
+    }
+  });
+})();
+</script>

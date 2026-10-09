@@ -1,0 +1,109 @@
+{
+    "txn_id": "TXN_F41FD173063E_1785420754",
+    "order_id": "ORD_573_1785420754",
+    "amount": 500,
+    "currency": "INR",
+    "customer_name": "Rekharam",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9461521566",
+    "gateway": "cashfree",
+    "description": "Wallet Top-up for Rekharam",
+    "return_url": "https:\/\/vara-567.com\/cashfree\/verify",
+    "webhook_url": "https:\/\/vara-567.com\/auto-pay\/cashfree\/webhook",
+    "status": "failed",
+    "gateway_order_id": "TXN_F41FD173063E_1785420754",
+    "gateway_txn_id": "6125620167",
+    "gateway_response": {
+        "data": {
+            "order": {
+                "order_id": "TXN_F41FD173063E_1785420754",
+                "order_amount": 500,
+                "order_currency": "INR",
+                "order_tags": null
+            },
+            "payment": {
+                "cf_payment_id": "6125620167",
+                "payment_status": "FAILED",
+                "payment_amount": 500,
+                "payment_currency": "INR",
+                "payment_message": "Transaction Rejected due to potential risk",
+                "payment_time": "2026-07-30T19:43:35+05:30",
+                "bank_reference": null,
+                "auth_id": null,
+                "payment_method": {
+                    "upi": {
+                        "channel": "qrcode",
+                        "upi_id": null
+                    }
+                },
+                "payment_group": "upi"
+            },
+            "customer_details": {
+                "customer_name": "Rekharam",
+                "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+                "customer_email": "customer@default.com",
+                "customer_phone": "9461521566"
+            },
+            "error_details": {
+                "error_code": "TRANSACTION_DECLINED",
+                "error_description": "The transaction was declined due to suspected fraud or risk policy.",
+                "error_reason": "risk_decline",
+                "error_source": "cashfree",
+                "error_code_raw": null,
+                "error_description_raw": null,
+                "error_subcode_raw": null
+            },
+            "payment_gateway_details": {
+                "gateway_name": "CASHFREE",
+                "gateway_order_id": null,
+                "gateway_payment_id": null,
+                "gateway_status_code": null,
+                "gateway_order_reference_id": null,
+                "gateway_settlement": null,
+                "gateway_reference_name": null
+            },
+            "payment_offers": null
+        },
+        "event_time": "2026-07-30T19:43:35+05:30",
+        "type": "PAYMENT_FAILED_WEBHOOK"
+    },
+    "ip_address": "157.48.248.143",
+    "request_ip": "148.113.43.3",
+    "user_agent": "GuzzleHttp\/7",
+    "created_at": "2026-07-30T19:42:34+05:30",
+    "updated_at": "2026-07-30T19:43:35+05:30",
+    "paid_at": null,
+    "cf_payment_session_id": "session_g42A-ZhSLlLqHgKfwoU-s1mzE1LyexYHEAkkWzXXu8V9fPeOi2T-B1vQawb1R0CTPseGgKSq744yNwxnMYnSCoYR1FmhVCNKwlO75-iF1It4F4OCDIML685DzOFv",
+    "cf_payment_link": null,
+    "gateway_order_raw": {
+        "cart_details": null,
+        "cf_order_id": "6536456746",
+        "created_at": "2026-07-30T19:42:35+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "Rekharam",
+            "customer_email": "customer@default.com",
+            "customer_phone": "9461521566",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 500,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-08-29T19:42:35+05:30",
+        "order_id": "TXN_F41FD173063E_1785420754",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_F41FD173063E_1785420754&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for Rekharam",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_g42A-ZhSLlLqHgKfwoU-s1mzE1LyexYHEAkkWzXXu8V9fPeOi2T-B1vQawb1R0CTPseGgKSq744yNwxnMYnSCoYR1FmhVCNKwlO75-iF1It4F4OCDIML685DzOFv",
+        "terminal_data": null
+    },
+    "payment_page_ip": "157.48.248.143",
+    "payment_page_seen_at": "2026-07-30T19:42:35+05:30",
+    "initiation_ip_address": "148.113.43.3"
+}

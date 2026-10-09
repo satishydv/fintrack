@@ -112,3 +112,29 @@
 .account-menu:has(.account-switch input:not(:checked)) .account-chevron{stroke:#677875}
 @media(max-width:1300px){.stage-account{min-height:523px}}
 @media(max-width:620px){.stage-account{padding:8px;min-height:523px}.account-menu{max-width:288px}}
+
+/* Boost selection modal */
+.stage-boosts{min-height:468px;padding:8px 3px;background:#0b2449}
+.boosts-component{position:relative;width:100%;max-width:390px;height:450px;overflow:hidden;background:radial-gradient(ellipse at 50% 15%,rgba(36,82,142,.17),transparent 62%),#0b2449;font-family:Inter,Arial,sans-serif}
+.boosts-rim{position:absolute;z-index:0;inset:46px 8px 39px;border:4px solid #4a3bb9;border-radius:48px;background:linear-gradient(145deg,#8175f4 0%,#7769ed 45%,#6e61e1 100%);box-shadow:inset 0 2px 0 rgba(255,255,255,.38),inset 0 -5px 0 rgba(59,42,161,.5),0 8px 0 #34288f,0 14px 20px rgba(0,0,0,.28)}
+.boosts-rim::before,.boosts-rim::after{content:"";position:absolute;top:36%;width:9px;height:48%;border-radius:8px;background:linear-gradient(90deg,#4935bd,#695ce1);box-shadow:0 0 0 1px rgba(147,133,255,.45)}
+.boosts-rim::before{left:-8px}.boosts-rim::after{right:-8px}
+.boosts-doodles{position:absolute;z-index:1;top:55px;left:12px;width:calc(100% - 24px);height:calc(100% - 100px);overflow:hidden;opacity:.85;pointer-events:none}
+.boosts-tab{position:absolute;z-index:4;top:22px;left:18%;width:64%;height:51px;display:grid;place-items:center;clip-path:polygon(8% 0,92% 0,100% 38%,91% 90%,83% 100%,17% 100%,9% 90%,0 38%);background:linear-gradient(180deg,#fff080 0%,#ffcc56 42%,#ff9b4e 100%);box-shadow:0 5px 0 #c87840,0 8px 12px rgba(0,0,0,.28);color:#9c4f3d;font-size:16px;font-weight:750;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.boosts-tab::after{content:"";position:absolute;inset:1px 5px 7px;clip-path:inherit;border:1px solid rgba(255,250,191,.65);pointer-events:none}
+.boost-options{position:absolute;z-index:3;top:97px;left:7%;right:7%;display:grid;gap:7px}
+.boost-option{position:relative;height:74px;padding:7px 13px;display:flex;align-items:center;gap:12px;border:2px solid #fff;border-radius:999px;background:linear-gradient(180deg,#f5f6ff 0%,#e5eaff 62%,#d0dcfa 100%);box-shadow:0 4px 0 rgba(46,42,148,.62),inset 0 1px 0 rgba(255,255,255,.96),0 7px 10px rgba(35,30,110,.2)}
+.boost-icon{position:relative;width:53px;height:53px;flex:0 0 53px;display:grid;place-items:center;border:5px solid #e7ebf6;border-radius:50%;box-shadow:0 2px 3px rgba(20,31,76,.4),inset 0 1px 0 rgba(255,255,255,.75)}
+.boost-icon svg{width:36px;height:36px;fill:none;stroke:#fff;stroke-width:3.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+.push-icon{background:radial-gradient(circle at 32% 23%,#ff7b91,#e63963 62%,#a52355);border-color:#d7dfef}
+.slow-icon{background:radial-gradient(circle at 32% 23%,#a9c5e7,#496cae 63%,#253e79);border-color:#dae3f2}
+.magnet-icon{background:radial-gradient(circle at 32% 23%,#41e8dd,#08a9b9 65%,#087285);border-color:#d8e7f4}
+.boost-copy{min-width:0;display:grid;gap:4px;line-height:1.1}
+.boost-copy strong{color:#617cc2;font-size:15px;font-weight:750;white-space:nowrap;letter-spacing:-.025em}
+.boost-copy em{color:#fff;font-size:12px;font-style:italic;white-space:nowrap;text-shadow:0 1px 2px rgba(60,92,171,.23)}
+.boost-count{position:absolute;left:67px;bottom:2px;width:21px;height:21px;display:grid;place-items:center;border:2px solid #dce5f3;border-radius:50%;background:#6e849b;color:#fff;font-size:10px;font-weight:700}
+.boosts-bottom-ribbon{position:absolute;z-index:2;left:20%;right:20%;bottom:38px;height:13px;border:2px solid #ffe073;border-radius:0 0 50% 50%;background:linear-gradient(180deg,#ffe85d,#ff983e);box-shadow:0 3px 0 #bd6843}
+.boost-confirm{position:absolute;z-index:5;left:50%;bottom:6px;width:83px;height:51px;transform:translateX(-50%);border:3px solid #afd9ff;border-radius:999px;background:linear-gradient(180deg,#9ef366 0%,#69dc4d 62%,#40b93d 100%);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 5px 0 #2265a4,0 8px 12px rgba(0,0,0,.35);color:#fff;font:inherit;font-size:17px;font-weight:800;text-shadow:0 1px 2px rgba(27,108,29,.55);cursor:pointer}
+.boost-confirm:hover{filter:brightness(1.08)}.boost-confirm:active{bottom:3px}
+@media(max-width:1300px){.stage-boosts{min-height:468px}.boosts-component{max-width:390px}}
+@media(max-width:620px){.stage-boosts{min-height:468px}.boosts-component{max-width:390px}}

@@ -1,0 +1,109 @@
+{
+    "txn_id": "TXN_A31C0D5268D0_1785424124",
+    "order_id": "ORD_498_1785424123",
+    "amount": 10000,
+    "currency": "INR",
+    "customer_name": "Swairam11",
+    "customer_email": "customer@default.com",
+    "customer_phone": "8949180159",
+    "gateway": "cashfree",
+    "description": "Wallet Top-up for Swairam11",
+    "return_url": "https:\/\/vara-567.com\/cashfree\/verify",
+    "webhook_url": "https:\/\/vara-567.com\/auto-pay\/cashfree\/webhook",
+    "status": "failed",
+    "gateway_order_id": "TXN_A31C0D5268D0_1785424124",
+    "gateway_txn_id": "6125927599",
+    "gateway_response": {
+        "data": {
+            "order": {
+                "order_id": "TXN_A31C0D5268D0_1785424124",
+                "order_amount": 10000,
+                "order_currency": "INR",
+                "order_tags": null
+            },
+            "payment": {
+                "cf_payment_id": "6125927599",
+                "payment_status": "FAILED",
+                "payment_amount": 10000,
+                "payment_currency": "INR",
+                "payment_message": "U30::DEBIT HAS FAILED",
+                "payment_time": "2026-07-30T20:39:09+05:30",
+                "bank_reference": "611282529389",
+                "auth_id": null,
+                "payment_method": {
+                    "upi": {
+                        "channel": "link",
+                        "upi_id": "follwersel@ptyes"
+                    }
+                },
+                "payment_group": "upi"
+            },
+            "customer_details": {
+                "customer_name": "Swairam11",
+                "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+                "customer_email": "customer@default.com",
+                "customer_phone": "8949180159"
+            },
+            "error_details": {
+                "error_code": "TRANSACTION_DECLINED",
+                "error_description": "The remitter (customer\u2019s) bank declined the transaction. Please request the user to try again or check with their bank.",
+                "error_reason": "debit_failed",
+                "error_source": "issuing_bank",
+                "error_code_raw": null,
+                "error_description_raw": null,
+                "error_subcode_raw": null
+            },
+            "payment_gateway_details": {
+                "gateway_name": "CASHFREE",
+                "gateway_order_id": null,
+                "gateway_payment_id": null,
+                "gateway_status_code": null,
+                "gateway_order_reference_id": null,
+                "gateway_settlement": null,
+                "gateway_reference_name": null
+            },
+            "payment_offers": null
+        },
+        "event_time": "2026-07-30T20:39:29+05:30",
+        "type": "PAYMENT_FAILED_WEBHOOK"
+    },
+    "ip_address": "157.48.247.176",
+    "request_ip": "148.113.43.3",
+    "user_agent": "GuzzleHttp\/7",
+    "created_at": "2026-07-30T20:38:44+05:30",
+    "updated_at": "2026-07-30T20:39:30+05:30",
+    "paid_at": null,
+    "cf_payment_session_id": "session_nMNW_k_fCpp0C7fPKhDS5X2TxpFRL_3Ho7J3YL9thp6FGXh-5q1eBeHJeK-m_28w8Arx4S475ecLt_ROMEWXuF9cDNEIdyiK52xneB0Lqu9IgEYX6aBOsunGB0wQ",
+    "cf_payment_link": null,
+    "gateway_order_raw": {
+        "cart_details": null,
+        "cf_order_id": "6536783573",
+        "created_at": "2026-07-30T20:38:44+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "Swairam11",
+            "customer_email": "customer@default.com",
+            "customer_phone": "8949180159",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 10000,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-08-29T20:38:44+05:30",
+        "order_id": "TXN_A31C0D5268D0_1785424124",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_A31C0D5268D0_1785424124&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for Swairam11",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_nMNW_k_fCpp0C7fPKhDS5X2TxpFRL_3Ho7J3YL9thp6FGXh-5q1eBeHJeK-m_28w8Arx4S475ecLt_ROMEWXuF9cDNEIdyiK52xneB0Lqu9IgEYX6aBOsunGB0wQ",
+        "terminal_data": null
+    },
+    "payment_page_ip": "157.48.247.176",
+    "payment_page_seen_at": "2026-07-30T20:38:45+05:30",
+    "initiation_ip_address": "148.113.43.3"
+}

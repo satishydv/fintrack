@@ -5,7 +5,7 @@
       <h1>Reusable components</h1>
       <p>Standalone interface patterns ready to reuse across the app.</p>
     </div>
-    <span class="component-count">05 patterns</span>
+    <span class="component-count">06 patterns</span>
   </header>
 
   <section class="component-grid" aria-label="Reusable UI component examples">
@@ -28,6 +28,10 @@
     <article class="component-preview">
       <header class="component-preview-label"><span>05</span><div><strong>Account menu</strong><small>Profile and preferences</small></div></header>
       <div class="component-stage stage-account"><?php require __DIR__ . '/../components/account-menu.php'; ?></div>
+    </article>
+    <article class="component-preview">
+      <header class="component-preview-label"><span>06</span><div><strong>Boost selection</strong><small>Game reward modal</small></div></header>
+      <div class="component-stage stage-boosts"><?php require __DIR__ . '/../components/boost-selection.php'; ?></div>
     </article>
   </section>
 </section>

@@ -1,0 +1,83 @@
+{
+    "txn_id": "TXN_3A3084907F78_1785432306",
+    "order_id": "ORD_573_1785432305",
+    "amount": 500,
+    "currency": "INR",
+    "customer_name": "Rekharam",
+    "customer_email": "customer@default.com",
+    "customer_phone": "9461521566",
+    "gateway": "cashfree",
+    "description": "Wallet Top-up for Rekharam",
+    "return_url": "https:\/\/vara-567.com\/cashfree\/verify",
+    "webhook_url": "https:\/\/vara-567.com\/auto-pay\/cashfree\/webhook",
+    "status": "pending",
+    "gateway_order_id": "TXN_3A3084907F78_1785432306",
+    "gateway_txn_id": "6126559492",
+    "gateway_response": {
+        "cart_details": null,
+        "cf_order_id": "6537447105",
+        "created_at": "2026-07-30T22:55:06+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "Rekharam",
+            "customer_email": "customer@default.com",
+            "customer_phone": "9461521566",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 500,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-08-29T22:55:06+05:30",
+        "order_id": "TXN_3A3084907F78_1785432306",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_3A3084907F78_1785432306&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for Rekharam",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_lmdpz1bTR1J4mcjlO0LJ02O98jC7AsjOtdgndg8SGD1Kbiebjur5CYE3HxY_4qru5ynf92s7v7Fco-XUYibg9Z2NLAE1AyxL2Bc_jmjuVK_gi_rS2LoUOr2maV8C",
+        "terminal_data": null
+    },
+    "ip_address": "157.48.248.11",
+    "request_ip": "148.113.43.3",
+    "user_agent": "GuzzleHttp\/7",
+    "created_at": "2026-07-30T22:55:06+05:30",
+    "updated_at": "2026-07-30T22:55:55+05:30",
+    "paid_at": null,
+    "cf_payment_session_id": "session_Lwv9MCq1cYrTQg9wDwKbWoJJfFsLLkzmCFbj5IoCQzCp5cNEdd5UVUEjsllp7alkU2-qYRfNupvPahclGsS4l8CQ_ytDFIieGTUj0x2Z2A4GzMxC6vL_qUwImUq1",
+    "cf_payment_link": null,
+    "gateway_order_raw": {
+        "cart_details": null,
+        "cf_order_id": "6537447105",
+        "created_at": "2026-07-30T22:55:06+05:30",
+        "customer_details": {
+            "customer_id": "CUST_41b6e6aeeaf6f93c0002c4ee85607b92",
+            "customer_name": "Rekharam",
+            "customer_email": "customer@default.com",
+            "customer_phone": "9461521566",
+            "customer_uid": null
+        },
+        "entity": "order",
+        "order_amount": 500,
+        "order_currency": "INR",
+        "order_expiry_time": "2026-08-29T22:55:06+05:30",
+        "order_id": "TXN_3A3084907F78_1785432306",
+        "order_meta": {
+            "return_url": "https:\/\/deposit.rudhvedinfotech.com\/return.php?txn=TXN_3A3084907F78_1785432306&order_id={order_id}",
+            "notify_url": null,
+            "payment_methods": null
+        },
+        "order_note": "Wallet Top-up for Rekharam",
+        "order_splits": [],
+        "order_status": "ACTIVE",
+        "order_tags": null,
+        "payment_session_id": "session_Lwv9MCq1cYrTQg9wDwKbWoJJfFsLLkzmCFbj5IoCQzCp5cNEdd5UVUEjsllp7alkU2-qYRfNupvPahclGsS4l8CQ_ytDFIieGTUj0x2Z2A4GzMxC6vL_qUwImUq1",
+        "terminal_data": null
+    },
+    "payment_page_ip": "157.48.248.11",
+    "payment_page_seen_at": "2026-07-30T22:55:07+05:30",
+    "initiation_ip_address": "148.113.43.3"
+}

@@ -1,7 +1,67 @@
 <?php
 $is_dashboard_view = ($section === 'dashboard');
 $display_txns = $is_dashboard_view ? ($recent_txns ?? array_slice($txns ?? [], 0, 10)) : ($txns ?? []);
+$refund_txns = array_values(array_filter($txns ?? [], fn($t) => strtolower((string)($t['status'] ?? '')) === 'refunded'));
+$dispute_txns = array_values(array_filter($txns ?? [], fn($t) => in_array(strtolower((string)($t['status'] ?? '')), ['chargeback', 'disputed'], true)));
+$refund_amount = array_sum(array_map(fn($t) => (float)($t['amount'] ?? 0), $refund_txns));
+$dispute_amount = array_sum(array_map(fn($t) => (float)($t['amount'] ?? 0), $dispute_txns));
+$status_counts = ['paid' => 0, 'pending' => 0, 'failed' => 0, 'review' => 0];
+foreach (($txns ?? []) as $txn) {
+  $status = strtolower((string)($txn['status'] ?? 'pending'));
+  $bucket = in_array($status, ['refunded', 'chargeback', 'disputed'], true) ? 'review' : (isset($status_counts[$status]) ? $status : 'failed');
+  $status_counts[$bucket]++;
+}
+$status_total = max(1, array_sum($status_counts));
+$status_angles = [];
+$angle = 0;
+foreach ($status_counts as $key => $count) {
+  $next_angle = $angle + ($count / $status_total * 360);
+  $status_angles[] = "var(--txn-{$key}) {$angle}deg {$next_angle}deg";
+  $angle = $next_angle;
+}
+$customer_count = count($seen_users ?? []);
 ?>
+<?php if (!$is_dashboard_view): ?>
+<section class="txn-insights" aria-label="Transaction insights">
+  <article class="txn-insight-summary">
+    <div class="txn-insight-values">
+      <div class="txn-insight-value-card">
+        <div class="txn-insight-label"><i class="refund-dot"></i>Refunds</div>
+        <strong><?= money_inr($refund_amount) ?></strong>
+        <span><?= number_format(count($refund_txns)) ?> refunded transactions</span>
+      </div>
+      <div class="txn-insight-value-card">
+        <div class="txn-insight-label"><i class="chargeback-dot"></i>Chargebacks</div>
+        <strong><?= money_inr($dispute_amount) ?></strong>
+        <span><?= number_format(count($dispute_txns)) ?> disputed transactions</span>
+      </div>
+    </div>
+    <div class="txn-status-visual">
+      <div class="txn-status-donut" style="--txn-donut:conic-gradient(<?= implode(', ', $status_angles) ?>)">
+        <div><strong><?= number_format(count($txns ?? [])) ?></strong><span>transactions</span></div>
+      </div>
+      <div class="txn-status-legend">
+        <span><i class="paid-dot"></i>Paid <?= number_format(($status_counts['paid'] / $status_total) * 100) ?>%</span>
+        <span><i class="pending-dot"></i>Pending <?= number_format(($status_counts['pending'] / $status_total) * 100) ?>%</span>
+        <span><i class="failed-dot"></i>Failed <?= number_format(($status_counts['failed'] / $status_total) * 100) ?>%</span>
+        <span><i class="chargeback-dot"></i>Review <?= number_format(($status_counts['review'] / $status_total) * 100) ?>%</span>
+      </div>
+    </div>
+  </article>
+  <article class="txn-customer-card">
+    <div class="txn-customer-art" aria-hidden="true">
+      <div class="txn-customer-art-top"><span>Customer mix</span><b><?= number_format($customer_count) ?></b><small>unique customers</small></div>
+      <div class="txn-customer-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="txn-customer-copy">
+      <span class="txn-customer-tag">Customers</span>
+      <h2>Customer insight</h2>
+      <p>Track new and returning customers across your recorded transactions.</p>
+      <a href="?section=reports" aria-label="Open customer reports">View reports <span aria-hidden="true">→</span></a>
+    </div>
+  </article>
+</section>
+<?php endif; ?>
 <div class="card table-card">
   <div class="table-header">
     <div class="table-title"><?= $is_dashboard_view ? 'Transaction History' : 'All Transactions' ?></div>
